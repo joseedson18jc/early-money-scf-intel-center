@@ -325,7 +325,7 @@
   function setLang(l) {
     lang = l; try { localStorage.setItem("scf-lang", l); } catch (e) {}
     document.documentElement.lang = l === "pt" ? "pt-BR" : "en";
-    document.title = T("Early Money · SCF Specialist Weekly Intel Center", "Early Money · Intel Center semanal especialista de SCF");
+    document.title = "Early Money · Intel Center - SCF Team";
     document.querySelectorAll("[data-i18n]").forEach(e => { const v = I18N[e.dataset.i18n]; if (v) e.textContent = L(v); });
     document.querySelectorAll("[data-i18n-html]").forEach(e => { const v = I18N[e.dataset.i18nHtml]; if (v) e.innerHTML = L(v); });
     document.querySelectorAll("[data-i18n-aria]").forEach(e => { const v = I18N[e.dataset.i18nAria]; if (v) e.setAttribute("aria-label", L(v)); });

@@ -1,4 +1,4 @@
-# Early Money · Intel Center semanal especialista de SCF
+# Early Money · Intel Center - SCF Team
 
 > **Aviso:** Uso funcional comprovado porém esta versão é somente por ora, ilustrativa e pertence a J.E.M.Costa.
 

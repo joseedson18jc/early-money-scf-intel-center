@@ -1568,7 +1568,7 @@
         <span class="badge" data-i18n="badge">Dados ilustrativos</span>
         <span class="fx-badge" id="fxBadge" hidden>PTAX BCB 19/11/2026: R$ 5,89 / US$</span>
       </div>
-      <h1 data-i18n="h1">Intel Center semanal especialista de SCF</h1>
+      <h1 data-i18n="h1">Intel Center - SCF Team</h1>
       <p class="sub" id="heroSub"></p>
       <button class="srcchip" id="src-chip" type="button"><i></i><span id="src-txt"></span></button>
     </div>
@@ -2569,7 +2569,7 @@
     "vm.step":["Step-by-step","Passo a passo"],"vm.all":["Full cockpit","Visão completa"],
     "ms.d1c":["Weekly · operational","Semanal · operacional"],"ms.d2c":["Weekly · predictability","Semanal · previsibilidade"],"ms.d3c":["Monthly / quarterly","Mensal / trimestral"],
     "kick":["Brazil portfolio · Weekly review, daily inputs","Carteira Brasil · Revisão semanal, inputs diários"],
-    "h1":["SCF specialist weekly Intel Center","Intel Center semanal especialista de SCF"],"badge":["Illustrative data","Dados ilustrativos"],
+    "h1":["Intel Center - SCF Team","Intel Center - SCF Team"],"badge":["Illustrative data","Dados ilustrativos"],
     "aria.weekctl":["Week controls","Controles de semana"],"aria.prev":["Previous week","Semana anterior"],"aria.next":["Next week","Próxima semana"],
     "aria.play":["Play weekly history","Reproduzir histórico semanal"],"aria.quarter":["Quarter countdown","Contagem para o fim do trimestre"],"aria.clock":["Time remaining in quarter","Tempo restante no trimestre"],
     "wk":["Week","Semana"],"wk.short":["Wk","Sem"],"wk.docai":["W5 · Doc AI","S5 · IA Docs"],
@@ -5859,7 +5859,7 @@ Write ALL prose fields strictly in ${lang === "pt" ? "Brazilian Portuguese (PT-B
   function setLang(l) {
     lang = l; try { localStorage.setItem("scf-lang", l); } catch (e) {}
     document.documentElement.lang = l === "pt" ? "pt-BR" : "en";
-    document.title = T("Early Money · SCF Specialist Weekly Intel Center", "Early Money · Intel Center semanal especialista de SCF");
+    document.title = "Early Money · Intel Center - SCF Team";
     document.querySelectorAll("[data-i18n]").forEach(e => { const v = I18N[e.dataset.i18n]; if (v) e.textContent = L(v); });
     document.querySelectorAll("[data-i18n-html]").forEach(e => { const v = I18N[e.dataset.i18nHtml]; if (v) e.innerHTML = L(v); });
     document.querySelectorAll("[data-i18n-aria]").forEach(e => { const v = I18N[e.dataset.i18nAria]; if (v) e.setAttribute("aria-label", L(v)); });
