@@ -152,18 +152,35 @@
   html[data-theme="dark"] #aiPanel{background:#111B2E;border-color:#263754}
   html[data-theme="dark"] #aiQ{background:#0E1729;border-color:#2A3D5E;color:#ECF2FA}
   html[data-theme="dark"] #aiChips button{background:#16233B;border-color:#2A3D5E;color:#E2ECFA}
+  html[data-theme="dark"] .sidebar{background:#0F192B;border-right-color:#223250}
+  html[data-theme="dark"] .sb-item:hover{background:rgba(255,255,255,.06);color:#F1F5FB}
+  html[data-theme="dark"] .sb-item[aria-current="page"]{background:rgba(77,178,255,.16);color:#67CFDA;border-left-color:#67CFDA}
+  html[data-theme="dark"] .sb-item[aria-current="page"] .sb-ico{background:#00A3D9;color:#061326}
+  html[data-theme="dark"] .sb-badge.warn{background:rgba(251,191,36,.16);color:#FCD34D}
+  html[data-theme="dark"] .workspace-bar{background:#111B2E;border-color:#243554}
   @media(max-width:1100px){
     .live-insights{grid-template-columns:1fr}
     .levers,.prods{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media(max-width:1024px){
+    .app-shell,body.sidebar-collapsed .app-shell{grid-template-columns:minmax(0,1fr)}
+    .sidebar,body.sidebar-collapsed .sidebar{position:fixed;top:0;left:0;bottom:0;height:100vh;width:min(300px,86vw);z-index:220;transform:translateX(-105%);opacity:1;pointer-events:auto;border-right:1px solid var(--hair);padding:14px 12px 24px;box-shadow:0 24px 64px rgba(0,18,46,.38)}
+    body.sidebar-open .sidebar{transform:translateX(0)}
+    .sb-close-mob{display:grid;place-items:center}
+    .app-main{padding:14px 14px 48px}
+    #mod-overview .hero{grid-template-columns:1fr}
   }
   @media(max-width:700px){
     .levers,.prods,.pracs,.of-grid{grid-template-columns:1fr}
     .lev .st{min-height:0}
     #aiPanel{right:8px;bottom:8px;height:calc(100vh - 16px)}
     #aiFab{right:12px;bottom:12px;padding:10px 14px;font-size:12.5px}
-    .nav-util .util-lbl{display:none}
+    .nav-util .util-lbl,.nav-menu-btn .menu-lbl{display:none}
+    .workspace-bar{padding:10px 12px}
+    .workspace-bar .hero-right{width:100%;flex-direction:column;align-items:stretch}
   }
   @media print{
-    #aiFab,#aiPanel,#tourPop,.tour-backdrop,.tip-banner,.live-insights{display:none!important}
+    #aiFab,#aiPanel,#tourPop,.tour-backdrop,.tip-banner,.live-insights,.sidebar,.sidebar-backdrop,.workspace-bar,#modPager{display:none!important}
+    .app-shell{display:block!important}
   }
 

@@ -1,46 +1,176 @@
-  // ========== STEP NAVIGATION & VIEW MODE ==========
-  let activeStep = 1, viewMode = "step";
-  const STEP_META = {
-    1:() => ({role:T("SCF Specialist · Anchor RM","Especialista SCF · Gerente da Âncora"), cadence:T("Every Monday","Toda segunda-feira"), question:T("What are this week's actions, and where to intervene in onboarding?","Quais as ações da semana e onde intervir na adesão?")}),
-    2:() => ({role:T("SCF Specialist · Credit Risk","Especialista SCF · Risco de Crédito"), cadence:T("Weekly","Semanal"), question:T("Does the projected balance fit the approved limit and 8% error tolerance?","O saldo projetado cabe no limite aprovado e na tolerância de 8%?")}),
-    3:() => ({role:T("Corporate / SCF Leadership","Liderança Corporate / SCF"), cadence:T("Monthly / Quarterly","Mensal / Trimestral"), question:T("Which anchor to prioritize (3Q26 scale), with what offer and credit limit?","Qual âncora priorizar (escala 3T26), com qual oferta e quanto crédito pedir?")}),
-    4:() => ({role:T("Leadership · Product","Liderança · Produto"), cadence:T("External Intelligence","Inteligência Externa"), question:T("How do competitors, CDI+x pricing, registrars and 3Q26 credit signals shape our strategy?","Como concorrentes, preço CDI+x, registradoras e sinais 3T26 orientam nossa estratégia?")})
-  };
-  function updateStepView(scrollToPanel = false) {
-    document.querySelectorAll(".nav-step-btn").forEach(b => {
-      if (viewMode === "step" && +b.dataset.step === activeStep) b.setAttribute("aria-current", "step");
+  // ========== ORGANIZED LEFT SIDEBAR & 15-MODULE NAVIGATION ==========
+  const MOD_ORDER = [
+    { id: "overview", step: 0, groupKey: "sb.g0", titleKey: "mod.overview.n" },
+    { id: "actions",  step: 1, groupKey: "sb.g1", titleKey: "mod.actions.n" },
+    { id: "kpis",     step: 1, groupKey: "sb.g1", titleKey: "mod.kpis.n" },
+    { id: "briefing", step: 1, groupKey: "sb.g1", titleKey: "mod.briefing.n" },
+    { id: "adoption", step: 1, groupKey: "sb.g1", titleKey: "mod.adoption.n" },
+    { id: "friction", step: 1, groupKey: "sb.g1", titleKey: "mod.friction.n" },
+    { id: "forecast", step: 2, groupKey: "sb.g2", titleKey: "mod.forecast.n" },
+    { id: "backtest", step: 2, groupKey: "sb.g2", titleKey: "mod.backtest.n" },
+    { id: "pipeline", step: 3, groupKey: "sb.g3", titleKey: "mod.pipeline.n" },
+    { id: "anchors",  step: 3, groupKey: "sb.g3", titleKey: "mod.anchors.n" },
+    { id: "comp",     step: 4, groupKey: "sb.g4", titleKey: "mod.comp.n" },
+    { id: "pricing",  step: 4, groupKey: "sb.g4", titleKey: "mod.pricing.n" },
+    { id: "share",    step: 4, groupKey: "sb.g4", titleKey: "mod.share.n" },
+    { id: "signals",  step: 4, groupKey: "sb.g4", titleKey: "mod.signals.n" },
+    { id: "products", step: 4, groupKey: "sb.g4", titleKey: "mod.products.n" }
+  ];
+  const STEP_DEFAULT_MOD = { 0: "overview", 1: "actions", 2: "forecast", 3: "pipeline", 4: "comp" };
+
+  let activeMod = "overview", activeStep = 0, viewMode = "step";
+  try {
+    const savedCollapsed = localStorage.getItem("scf-sidebar");
+    if (savedCollapsed === "collapsed" && window.innerWidth > 1024) document.body.classList.add("sidebar-collapsed");
+  } catch (e) {}
+
+  function closeMobileSidebar() {
+    document.body.classList.remove("sidebar-open");
+    if ($("sidebarBackdrop")) $("sidebarBackdrop").hidden = true;
+    if ($("menuToggle") && window.innerWidth <= 1024) $("menuToggle").setAttribute("aria-expanded", "false");
+  }
+  function openMobileSidebar() {
+    document.body.classList.add("sidebar-open");
+    if ($("sidebarBackdrop")) $("sidebarBackdrop").hidden = false;
+    if ($("menuToggle")) $("menuToggle").setAttribute("aria-expanded", "true");
+  }
+  if ($("menuToggle")) {
+    $("menuToggle").onclick = () => {
+      if (window.innerWidth <= 1024) {
+        if (document.body.classList.contains("sidebar-open")) closeMobileSidebar();
+        else openMobileSidebar();
+      } else {
+        const collapsed = document.body.classList.toggle("sidebar-collapsed");
+        $("menuToggle").setAttribute("aria-expanded", String(!collapsed));
+        try { localStorage.setItem("scf-sidebar", collapsed ? "collapsed" : "open"); } catch (e) {}
+      }
+    };
+  }
+  if ($("sbCloseMob")) $("sbCloseMob").onclick = closeMobileSidebar;
+  if ($("sidebarBackdrop")) $("sidebarBackdrop").onclick = closeMobileSidebar;
+
+  function updateSidebarBadges() {
+    if ($("sb-b-actions") && Array.isArray(ACTS)) {
+      const openCount = ACTS.length;
+      $("sb-b-actions").textContent = String(openCount);
+    }
+    if ($("sb-b-flags") && D && D.flags) {
+      const i = Math.max(0, Math.min(D.flags.length - 1, (typeof week === "number" ? week : W) - 1));
+      const fl = D.flags[i] || 0;
+      $("sb-b-flags").hidden = fl === 0;
+      $("sb-b-flags").textContent = fl ? `${fl}` : "";
+    }
+    if ($("sb-b-lim")) {
+      const cls = (typeof FS.kBase === "number" && FS.kBase >= 0) ? "bad" : (typeof FS.kHigh === "number" && FS.kHigh >= 0) ? "warn" : "";
+      $("sb-b-lim").className = "sb-dot" + (cls ? " " + cls : "");
+    }
+    if ($("sb-b-flow") && typeof totals === "function") {
+      const t = totals();
+      $("sb-b-flow").textContent = bn(t.flow, 1);
+    }
+  }
+
+  function updateStepView(scrollToTarget = false) {
+    const idx = Math.max(0, MOD_ORDER.findIndex(m => m.id === activeMod));
+    const cur = MOD_ORDER[idx];
+    activeStep = cur.step;
+
+    // Sidebar active highlight
+    document.querySelectorAll("[data-mod-btn]").forEach(b => {
+      if (b.dataset.modBtn === activeMod) b.setAttribute("aria-current", "page");
       else b.removeAttribute("aria-current");
     });
-    document.querySelectorAll(".step-card").forEach(b => b.setAttribute("aria-pressed", viewMode === "all" ? "false" : String(+b.dataset.step === activeStep)));
-    $("modeStep").setAttribute("aria-pressed", String(viewMode === "step"));
-    $("modeAll").setAttribute("aria-pressed", String(viewMode === "all"));
-    document.querySelectorAll("[data-step-panel]").forEach(p => { p.hidden = viewMode === "step" && +p.dataset.stepPanel !== activeStep; });
-    document.querySelectorAll("[data-step-nav]").forEach(n => { n.style.display = viewMode === "step" ? "flex" : "none"; });
+
+    // Overview step cards pressed state
+    document.querySelectorAll(".step-card").forEach(b => {
+      b.setAttribute("aria-pressed", viewMode === "all" ? "false" : String(+b.dataset.step === activeStep));
+    });
+
+    if ($("modeStep")) $("modeStep").setAttribute("aria-pressed", String(viewMode === "step"));
+    if ($("modeAll")) $("modeAll").setAttribute("aria-pressed", String(viewMode === "all"));
+
+    // Show/hide Step containers & individual separated modules cleanly
     if (viewMode === "all") {
-      $("stepContext").innerHTML = `<strong>${T("Full cockpit view","Visão completa do cockpit")}</strong> · <span>${T("All 4 decision steps displayed sequentially.","Todas as 4 etapas de decisão exibidas em sequência.")}</span>`;
+      document.querySelectorAll("[data-step-panel]").forEach(p => { p.hidden = false; });
+      document.querySelectorAll("[data-mod]").forEach(m => { m.hidden = false; });
+      if ($("modPager")) $("modPager").hidden = true;
+      if ($("stepContext")) {
+        $("stepContext").innerHTML = `<strong>${T("Full Intel Center view", "Visão completa do Intel Center")}</strong> · <span>${T("All 15 modules displayed sequentially.", "Todos os 15 módulos exibidos em sequência.")}</span>`;
+      }
     } else {
-      const m = STEP_META[activeStep]();
-      $("stepContext").innerHTML = `<span class="role-chip">${m.role} · ${m.cadence}</span> <strong>${m.question}</strong>`;
+      document.querySelectorAll("[data-step-panel]").forEach(p => {
+        p.hidden = +p.dataset.stepPanel !== cur.step;
+      });
+      document.querySelectorAll("[data-mod]").forEach(m => {
+        m.hidden = m.dataset.mod !== activeMod;
+      });
+      if ($("modPager")) {
+        $("modPager").hidden = false;
+        const prev = idx > 0 ? MOD_ORDER[idx - 1] : null;
+        const next = idx < MOD_ORDER.length - 1 ? MOD_ORDER[idx + 1] : null;
+        $("modPrevBtn").disabled = !prev;
+        $("modPrevLbl").textContent = prev ? L(I18N[prev.titleKey]) : T("Start", "Início");
+        $("modNextBtn").disabled = false;
+        $("modNextLbl").textContent = next ? L(I18N[next.titleKey]) : T("Present (17 slides)", "Apresentar (17 slides)");
+      }
+      if ($("stepContext")) {
+        $("stepContext").innerHTML = `<span class="role-chip">${L(I18N[cur.groupKey])}</span> <strong>${L(I18N[cur.titleKey])}</strong> <span style="color:var(--muted);font-size:12px">(${idx + 1}/${MOD_ORDER.length})</span>`;
+      }
     }
-    if (scrollToPanel) { const t = $("panel-" + activeStep); if (t) t.scrollIntoView({behavior:"smooth", block:"start"}); }
+
+    if (scrollToTarget) {
+      if (viewMode === "all") {
+        const elTarget = $("mod-" + activeMod);
+        if (elTarget) elTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+    updateSidebarBadges();
   }
+
+  function goMod(modId, scroll = true) {
+    if (!MOD_ORDER.some(m => m.id === modId)) modId = "overview";
+    activeMod = modId;
+    closeMobileSidebar();
+    updateStepView(scroll);
+  }
+
   function goStep(step, scroll = true) {
-    activeStep = step;
-    if (viewMode === "all") updateStepView(true);
-    else { updateStepView(false); if (scroll) $("journeyBar").scrollIntoView({behavior:"smooth", block:"nearest"}); }
+    const targetMod = STEP_DEFAULT_MOD[step] || "overview";
+    goMod(targetMod, scroll);
   }
-  document.querySelectorAll("[data-step]").forEach(b => b.addEventListener("click", () => goStep(+b.dataset.step, true)));
-  document.querySelectorAll("[data-go-step]").forEach(b => b.addEventListener("click", () => {
-    activeStep = +b.dataset.goStep; updateStepView(false); $("panel-" + activeStep).scrollIntoView({behavior:"smooth", block:"start"});
-  }));
-  $("modeStep").onclick = () => { viewMode = "step"; updateStepView(false); };
-  $("modeAll").onclick  = () => { viewMode = "all";  updateStepView(false); };
+
+  document.querySelectorAll("[data-mod-btn]").forEach(b => {
+    b.addEventListener("click", () => goMod(b.dataset.modBtn, true));
+  });
+  document.querySelectorAll("[data-step]").forEach(b => {
+    b.addEventListener("click", () => goStep(+b.dataset.step, true));
+  });
+  if ($("brandHome")) {
+    $("brandHome").addEventListener("click", e => { e.preventDefault(); goMod("overview", true); });
+  }
+  if ($("modPrevBtn")) {
+    $("modPrevBtn").onclick = () => {
+      const idx = MOD_ORDER.findIndex(m => m.id === activeMod);
+      if (idx > 0) goMod(MOD_ORDER[idx - 1].id, true);
+    };
+  }
+  if ($("modNextBtn")) {
+    $("modNextBtn").onclick = () => {
+      const idx = MOD_ORDER.findIndex(m => m.id === activeMod);
+      if (idx < MOD_ORDER.length - 1) goMod(MOD_ORDER[idx + 1].id, true);
+      else if (typeof openDeck === "function") openDeck(0);
+    };
+  }
+  $("modeStep").onclick = () => { viewMode = "step"; closeMobileSidebar(); updateStepView(false); };
+  $("modeAll").onclick  = () => { viewMode = "all";  closeMobileSidebar(); updateStepView(false); };
 
   // Scroll progress bar
   addEventListener("scroll", () => {
     const max = document.documentElement.scrollHeight - innerHeight;
     $("scrollProg").style.width = (max > 0 ? Math.min(100, 100 * scrollY / max) : 0) + "%";
-  }, {passive:true});
+  }, { passive: true });
 
   // Shared accessible modal manager (focus trap + scroll lock + Escape)
   let modalFocus = null;
@@ -59,6 +189,7 @@
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   }
   function openSimpleModal(id) {
+    closeMobileSidebar();
     setPlaying(false); modalFocus = document.activeElement;
     const m = $(id); m.hidden = false; syncBodyLock(); m.focus();
   }
@@ -73,4 +204,3 @@
   $("openData").onclick = () => { fillFields(); $("data-msg").textContent = ""; openSimpleModal("m-data"); };
   $("src-chip").onclick = $("openData").onclick;
   $("openBrief").onclick = () => { $("brief-body").innerHTML = briefHTML(); $("b-msg").textContent = ""; openSimpleModal("m-brief"); };
-

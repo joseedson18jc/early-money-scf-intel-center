@@ -407,6 +407,52 @@
   .tour-btns button{border:1px solid var(--hair);background:var(--surface);color:var(--navy);font:600 12px var(--body);padding:6px 12px;border-radius:999px;cursor:pointer}
   .tour-btns button.pri{background:var(--blue);border-color:var(--blue);color:#fff}
 
+  /* ========== ORGANIZED APP SHELL & LEFT SIDEBAR MENU ========== */
+  .topbar-left{display:flex;align-items:center;gap:10px;min-width:0}
+  .nav-menu-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.08);color:#fff;font:600 12px var(--body);padding:6px 11px;border-radius:10px;cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s}
+  .nav-menu-btn:hover{background:rgba(255,255,255,.16);border-color:rgba(103,207,218,.65)}
+  .app-shell{display:grid;grid-template-columns:272px minmax(0,1fr);min-height:calc(100vh - 86px);max-width:1680px;margin:0 auto;transition:grid-template-columns .2s ease}
+  body.sidebar-collapsed .app-shell{grid-template-columns:0 minmax(0,1fr)}
+  body.sidebar-collapsed .sidebar{transform:translateX(-100%);opacity:0;pointer-events:none;border-right-width:0;padding:0;overflow:hidden}
+  .sidebar-backdrop{position:fixed;inset:0;z-index:210;background:rgba(0,18,46,.48);backdrop-filter:blur(2px)}
+  .sidebar-backdrop[hidden]{display:none}
+  .sidebar{position:sticky;top:86px;height:calc(100vh - 86px);overflow-y:auto;background:var(--surface);border-right:1px solid var(--hair);padding:14px 12px 24px;display:flex;flex-direction:column;gap:12px;transition:transform .2s ease,opacity .18s ease;scrollbar-width:thin}
+  .sb-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--hair)}
+  .sb-mode{display:grid;grid-template-columns:1fr 1fr;gap:3px;flex:1;background:var(--tint);padding:3px;border-radius:10px;border:1px solid var(--hair)}
+  .sb-mode button{border:0;background:transparent;color:var(--muted);font:600 11.5px var(--body);padding:6px 8px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  .sb-mode button[aria-pressed="true"]{background:var(--surface);color:var(--navy);box-shadow:0 1px 4px rgba(0,26,77,.12)}
+  .sb-close-mob{display:none;border:1px solid var(--hair);background:var(--surface);color:var(--navy);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:15px}
+  .sb-nav{display:flex;flex-direction:column;gap:14px}
+  .sb-group{display:flex;flex-direction:column;gap:3px}
+  .sb-group-lbl{font-size:10px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);padding:0 10px 4px}
+  .sb-item{display:flex;align-items:center;gap:9px;width:100%;border:0;border-left:3px solid transparent;background:transparent;color:var(--ink);font:500 12.5px/1.25 var(--body);padding:8px 10px 8px 9px;border-radius:9px;cursor:pointer;text-align:left;transition:background .14s,color .14s,border-color .14s}
+  .sb-item:hover{background:var(--tint);color:var(--navy)}
+  .sb-item[aria-current="page"]{background:rgba(5,109,174,.11);color:var(--blue);border-left-color:var(--blue);font-weight:700}
+  .sb-ico{flex:0 0 22px;height:22px;border-radius:6px;background:var(--tint);color:var(--navy);font:700 10.5px var(--body);display:grid;place-items:center}
+  .sb-item[aria-current="page"] .sb-ico{background:var(--blue);color:#fff}
+  .sb-txt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sb-badge{font:700 10px var(--body);padding:2px 7px;border-radius:999px;background:var(--tint);color:var(--navy);white-space:nowrap}
+  .sb-badge.warn{background:rgba(217,119,6,.16);color:#B45309}
+  .sb-badge[hidden]{display:none}
+  .sb-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
+  .sb-dot.warn{background:var(--amber)}
+  .sb-dot.bad{background:var(--red)}
+  .sb-tools{padding-top:10px;border-top:1px solid var(--hair)}
+  .sb-tool{color:var(--muted);font-weight:600}
+
+  .app-main{width:100%;max-width:1320px;min-width:0;padding:18px 24px 56px}
+  .workspace-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:12px 16px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,26,77,.04)}
+  .wb-left{flex:1 1 260px;min-width:0}
+  .workspace-bar .hero-right{flex-direction:row;align-items:center;flex-wrap:wrap;gap:10px}
+  .workspace-bar .quarter-pill{padding:7px 12px}
+  .workspace-bar .week-bar{padding:6px 12px}
+  #mod-overview .hero{grid-template-columns:1.25fr 1fr;margin-top:8px}
+  .mod-pane{margin-top:14px;scroll-margin-top:102px}
+  .mod-pane[hidden]{display:none}
+  .mod-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:2px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--hair)}
+  .mod-head h2{margin:6px 0 0;font-size:22px;line-height:1.2;color:var(--navy)}
+  #modPager{margin-top:20px}
+
   /* ===== src/styles/03-steps.css ===== */
   /* ========== MONDAY ACTION PLAN (FROM V5, UNIFIED) ========== */
   .actions-card{padding:0;overflow:hidden}
@@ -1233,19 +1279,36 @@
   html[data-theme="dark"] #aiPanel{background:#111B2E;border-color:#263754}
   html[data-theme="dark"] #aiQ{background:#0E1729;border-color:#2A3D5E;color:#ECF2FA}
   html[data-theme="dark"] #aiChips button{background:#16233B;border-color:#2A3D5E;color:#E2ECFA}
+  html[data-theme="dark"] .sidebar{background:#0F192B;border-right-color:#223250}
+  html[data-theme="dark"] .sb-item:hover{background:rgba(255,255,255,.06);color:#F1F5FB}
+  html[data-theme="dark"] .sb-item[aria-current="page"]{background:rgba(77,178,255,.16);color:#67CFDA;border-left-color:#67CFDA}
+  html[data-theme="dark"] .sb-item[aria-current="page"] .sb-ico{background:#00A3D9;color:#061326}
+  html[data-theme="dark"] .sb-badge.warn{background:rgba(251,191,36,.16);color:#FCD34D}
+  html[data-theme="dark"] .workspace-bar{background:#111B2E;border-color:#243554}
   @media(max-width:1100px){
     .live-insights{grid-template-columns:1fr}
     .levers,.prods{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media(max-width:1024px){
+    .app-shell,body.sidebar-collapsed .app-shell{grid-template-columns:minmax(0,1fr)}
+    .sidebar,body.sidebar-collapsed .sidebar{position:fixed;top:0;left:0;bottom:0;height:100vh;width:min(300px,86vw);z-index:220;transform:translateX(-105%);opacity:1;pointer-events:auto;border-right:1px solid var(--hair);padding:14px 12px 24px;box-shadow:0 24px 64px rgba(0,18,46,.38)}
+    body.sidebar-open .sidebar{transform:translateX(0)}
+    .sb-close-mob{display:grid;place-items:center}
+    .app-main{padding:14px 14px 48px}
+    #mod-overview .hero{grid-template-columns:1fr}
   }
   @media(max-width:700px){
     .levers,.prods,.pracs,.of-grid{grid-template-columns:1fr}
     .lev .st{min-height:0}
     #aiPanel{right:8px;bottom:8px;height:calc(100vh - 16px)}
     #aiFab{right:12px;bottom:12px;padding:10px 14px;font-size:12.5px}
-    .nav-util .util-lbl{display:none}
+    .nav-util .util-lbl,.nav-menu-btn .menu-lbl{display:none}
+    .workspace-bar{padding:10px 12px}
+    .workspace-bar .hero-right{width:100%;flex-direction:column;align-items:stretch}
   }
   @media print{
-    #aiFab,#aiPanel,#tourPop,.tour-backdrop,.tip-banner,.live-insights{display:none!important}
+    #aiFab,#aiPanel,#tourPop,.tour-backdrop,.tip-banner,.live-insights,.sidebar,.sidebar-backdrop,.workspace-bar,#modPager{display:none!important}
+    .app-shell{display:block!important}
   }
 </style>
 </head>
@@ -1256,21 +1319,20 @@
     <span>Uso funcional comprovado porém esta versão é somente por ora, ilustrativa e pertence a J.E.M.Costa.</span>
   </div>
   <div class="topbar-inner">
-    <a class="brand-lockup" href="#top" id="brandHome" aria-label="Early Money · SCF Intel Center">
-      <span id="brandMark" class="brand-logo" aria-hidden="true"></span>
-      <span class="brand-divider" aria-hidden="true"></span>
-      <span class="brand-title">
-        <strong data-i18n="nav.brand">Early Money</strong>
-        <span data-i18n="nav.sub">Corporate Banking · Brasil</span>
-      </span>
-    </a>
-
-    <nav class="nav-steps" aria-label="Etapas do cockpit" id="topStepNav">
-      <button class="nav-step-btn" data-step="1" aria-current="step"><span class="sn">1</span><span data-i18n="st.1.short">Diagnóstico</span></button>
-      <button class="nav-step-btn" data-step="2"><span class="sn">2</span><span data-i18n="st.2.short">Projeção</span></button>
-      <button class="nav-step-btn" data-step="3"><span class="sn">3</span><span data-i18n="st.3.short">Pipeline</span></button>
-      <button class="nav-step-btn" data-step="4"><span class="sn">4</span><span data-i18n="st.4.short">Mercado</span></button>
-    </nav>
+    <div class="topbar-left">
+      <button type="button" class="nav-menu-btn" id="menuToggle" aria-expanded="true" aria-controls="sideNav" data-i18n-aria="nav.menu.aria" title="Menu de módulos / Modules menu">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <span class="menu-lbl" data-i18n="nav.menu">Módulos</span>
+      </button>
+      <a class="brand-lockup" href="#top" id="brandHome" aria-label="Early Money · SCF Intel Center">
+        <span id="brandMark" class="brand-logo" aria-hidden="true"></span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-title">
+          <strong data-i18n="nav.brand">Early Money</strong>
+          <span data-i18n="nav.sub">Corporate Banking · Brasil</span>
+        </span>
+      </a>
+    </div>
 
     <div class="topbar-right">
       <button class="nav-ai" id="openAI" data-i18n-aria="nav.ai.aria" title="AI Analysis ON">
@@ -1284,9 +1346,6 @@
       </button>
       <button class="nav-util" id="toggleTips" aria-pressed="true" data-i18n-aria="nav.tips.aria" title="Dicas na tela / On-screen tips"><span>💡</span><span class="util-lbl" data-i18n="nav.tips">Dicas</span></button>
       <button class="nav-util" id="startTour" data-i18n-aria="nav.tour.aria" title="Guia rápido / Guided tour"><span>?</span><span class="util-lbl" data-i18n="nav.tour">Guia</span></button>
-      <button class="nav-util" id="openOF" data-i18n-aria="nav.of.aria" title="Open Finance"><span>⇄</span><span class="util-lbl">Open Finance</span><i class="of-dot" id="of-dot" hidden></i></button>
-      <button class="nav-ghost" id="openData" data-i18n="nav.data">Dados CSV</button>
-      <button class="nav-ghost" id="openBrief" data-i18n="nav.brief">Briefing</button>
       <button class="btn-present" id="openDeck">
         <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5l8 4.5-8 4.5z" fill="currentColor"/></svg>
         <span data-i18n="nav.present">Apresentar (17)</span>
@@ -1312,9 +1371,155 @@
   </div>
 </header>
 
-<main class="wrap" id="top">
-  <!-- HERO + FLOW ART + CONTROLS -->
-  <section class="hero">
+<div class="sidebar-backdrop" id="sidebarBackdrop" hidden></div>
+<div class="app-shell" id="appShell">
+  <!-- ==================== ORGANIZED LEFT SIDEBAR MENU ==================== -->
+  <aside class="sidebar" id="sideNav" aria-label="Navegação por módulos">
+    <div class="sb-top">
+      <div class="sb-mode" role="group" aria-label="Modo de visualização">
+        <button type="button" id="modeStep" aria-pressed="true" data-i18n="vm.mod">Por módulo</button>
+        <button type="button" id="modeAll" aria-pressed="false" data-i18n="vm.all">Ver todos</button>
+      </div>
+      <button type="button" class="sb-close-mob" id="sbCloseMob" aria-label="Fechar menu">✕</button>
+    </div>
+
+    <nav class="sb-nav" id="sbNav">
+      <div class="sb-group">
+        <div class="sb-group-lbl" data-i18n="sb.g0">Visão Geral</div>
+        <button type="button" class="sb-item" data-mod-btn="overview" aria-current="page">
+          <span class="sb-ico">◈</span>
+          <span class="sb-txt" data-i18n="mod.overview.n">Resumo Executivo</span>
+        </button>
+      </div>
+
+      <div class="sb-group">
+        <div class="sb-group-lbl" data-i18n="sb.g1">1 · Diagnóstico &amp; Adesão</div>
+        <button type="button" class="sb-item" data-mod-btn="actions">
+          <span class="sb-ico">✓</span>
+          <span class="sb-txt" data-i18n="mod.actions.n">Plano de Ação</span>
+          <span class="sb-badge" id="sb-b-actions"></span>
+        </button>
+        <button type="button" class="sb-item" data-mod-btn="kpis">
+          <span class="sb-ico">◔</span>
+          <span class="sb-txt" data-i18n="mod.kpis.n">KPIs do Programa (8)</span>
+        </button>
+        <button type="button" class="sb-item" data-mod-btn="briefing">
+          <span class="sb-ico">!</span>
+          <span class="sb-txt" data-i18n="mod.briefing.n">Briefing &amp; Alertas</span>
+          <span class="sb-badge warn" id="sb-b-flags" hidden></span>
+        </button>
+        <button type="button" class="sb-item" data-mod-btn="adoption">
+          <span class="sb-ico">◎</span>
+          <span class="sb-txt" data-i18n="mod.adoption.n">Share, Funil &amp; Propensão</span>
+        </button>
+        <button type="button" class="sb-item" data-mod-btn="friction">
+          <span class="sb-ico">⚡</span>
+          <span class="sb-txt" data-i18n="mod.friction.n">Fricção &amp; Alavancas (5)</span>
+        </button>
+      </div>
+
+      <div class="sb-group">
+        <div class="sb-group-lbl" data-i18n="sb.g2">2 · Projeção &amp; Limites</div>
+        <button type="button" class="sb-item" data-mod-btn="forecast">
+          <span class="sb-ico">↗</span>
+          <span class="sb-txt" data-i18n="mod.forecast.n">Projeção &amp; Limite</span>
+          <span class="sb-dot" id="sb-b-lim"></span>
+        </button>
+        <button type="button" class="sb-item" data-mod-btn="backtest">
+          <span class="sb-ico">▤</span>
+          <span class="sb-txt" data-i18n="mod.backtest.n">Sensibilidade &amp; Backtest</span>
+        </button>
+      </div>
+
+      <div class="sb-group">
+        <div class="sb-group-lbl" data-i18n="sb.g3">3 · Pipeline Âncoras 3T26</div>
+        <button type="button" class="sb-item" data-mod-btn="pipeline">
+          <span class="sb-ico">⊞</span>
+          <span class="sb-txt" data-i18n="mod.pipeline.n">Modelo Editável</span>
+          <span class="sb-badge" id="sb-b-flow"></span>
+        </button>
+        <button type="button" class="sb-item" data-mod-btn="anchors">
+          <span class="sb-ico">◫</span>
+          <span class="sb-txt" data-i18n="mod.anchors.n">Fichas das 5 Âncoras</span>
+        </button>
+      </div>
+
+      <div class="sb-group">
+        <div class="sb-group-lbl" data-i18n="sb.g4">4 · Mercado &amp; Produtos</div>
+        <button type="button" class="sb-item" data-mod-btn="comp">
+          <span class="sb-ico">4.1</span>
+          <span class="sb-txt" data-i18n="mod.comp.n">Concorrentes (IAS 7)</span>
+        </button>
+        <button type="button" class="sb-item" data-mod-btn="pricing">
+          <span class="sb-ico">4.2</span>
+          <span class="sb-txt" data-i18n="mod.pricing.n">Preço CDI + x</span>
+        </button>
+        <button type="button" class="sb-item" data-mod-btn="share">
+          <span class="sb-ico">4.3</span>
+          <span class="sb-txt" data-i18n="mod.share.n">Share Real (Registradoras)</span>
+        </button>
+        <button type="button" class="sb-item" data-mod-btn="signals">
+          <span class="sb-ico">4.4</span>
+          <span class="sb-txt" data-i18n="mod.signals.n">Sinais Externos 3T26</span>
+        </button>
+        <button type="button" class="sb-item" data-mod-btn="products">
+          <span class="sb-ico">★</span>
+          <span class="sb-txt" data-i18n="mod.products.n">Produtos Citi &amp; Práticas</span>
+        </button>
+      </div>
+
+      <div class="sb-group sb-tools">
+        <div class="sb-group-lbl" data-i18n="sb.g5">Ferramentas &amp; IA</div>
+        <button type="button" class="sb-item sb-tool" id="openOF" data-i18n-aria="nav.of.aria">
+          <span class="sb-ico">⇄</span>
+          <span class="sb-txt">Open Finance</span>
+          <i class="of-dot" id="of-dot" hidden></i>
+        </button>
+        <button type="button" class="sb-item sb-tool" id="openData">
+          <span class="sb-ico">↑</span>
+          <span class="sb-txt" data-i18n="nav.data">Dados CSV</span>
+        </button>
+        <button type="button" class="sb-item sb-tool" id="openBrief">
+          <span class="sb-ico">▤</span>
+          <span class="sb-txt" data-i18n="nav.brief">Briefing 1-página</span>
+        </button>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ==================== MAIN WORKSPACE CANVAS ==================== -->
+  <main class="wrap app-main" id="top">
+    <!-- PERSISTENT LIVE CONTROL BAR (WEEK PLAYBACK + QUARTER CLOCK + ACTIVE MODULE CONTEXT) -->
+    <section class="workspace-bar" id="workspaceBar">
+      <div class="wb-left">
+        <div class="step-context" id="stepContext"></div>
+      </div>
+      <div class="hero-right">
+      <aside class="quarter-pill" data-i18n-aria="aria.quarter">
+        <div><strong id="quarter-heading">Fechamento do trimestre</strong><span id="quarter-date"></span></div>
+        <div role="timer" id="quarter-clock" data-i18n-aria="aria.clock"></div>
+      </aside>
+      <div class="week-bar" role="group" data-i18n-aria="aria.weekctl">
+        <div class="week-bar-left">
+          <button class="btn-ico" id="prev" data-i18n-aria="aria.prev"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M10 3.5 5.5 8 10 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="btn-ico play" id="play" data-i18n-aria="aria.play"><svg id="playIcon" width="15" height="15" viewBox="0 0 16 16"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg></button>
+          <button class="btn-ico" id="next" data-i18n-aria="aria.next"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="wk-pill"><small data-i18n="wk.short">Sem</small><span id="wk">12</span></div>
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="slider" min="1" max="12" value="12" data-i18n-aria="wk">
+          <div class="slider-ticks"><span id="tk-start">S1</span><span class="milestone" data-i18n="wk.docai">S5 · IA Docs</span><span id="tk-end">S12</span></div>
+        </div>
+      </div>
+    </div>
+    </section>
+
+    <!-- LIVE REACTIVE INSIGHTS STRIP -->
+    <section class="live-insights" id="liveInsightsBar" aria-live="polite" aria-label="Insights ao vivo"></section>
+
+    <!-- ==================== MODULE 0: OVERVIEW / EXECUTIVE SUMMARY ==================== -->
+    <section class="mod-pane" id="mod-overview" data-mod="overview" data-mod-step="0">
+      <section class="hero">
     <div>
       <div class="kick-row">
         <span class="kick" data-i18n="kick">Carteira Brasil · Revisão semanal, inputs diários</span>
@@ -1355,28 +1560,13 @@
       </g>
     </svg>
 
-    <div class="hero-right">
-      <aside class="quarter-pill" data-i18n-aria="aria.quarter">
-        <div><strong id="quarter-heading">Fechamento do trimestre</strong><span id="quarter-date"></span></div>
-        <div role="timer" id="quarter-clock" data-i18n-aria="aria.clock"></div>
-      </aside>
-      <div class="week-bar" role="group" data-i18n-aria="aria.weekctl">
-        <div class="week-bar-left">
-          <button class="btn-ico" id="prev" data-i18n-aria="aria.prev"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M10 3.5 5.5 8 10 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button class="btn-ico play" id="play" data-i18n-aria="aria.play"><svg id="playIcon" width="15" height="15" viewBox="0 0 16 16"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg></button>
-          <button class="btn-ico" id="next" data-i18n-aria="aria.next"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <div class="wk-pill"><small data-i18n="wk.short">Sem</small><span id="wk">12</span></div>
-        </div>
-        <div class="slider-wrap">
-          <input type="range" id="slider" min="1" max="12" value="12" data-i18n-aria="wk">
-          <div class="slider-ticks"><span id="tk-start">S1</span><span class="milestone" data-i18n="wk.docai">S5 · IA Docs</span><span id="tk-end">S12</span></div>
-        </div>
-      </div>
-    </div>
+    
   </section>
-
-  <!-- 4-STEP INTUITIVE JOURNEY SELECTOR -->
-  <section class="journey-bar" aria-label="Fluxo de decisão em 4 etapas" id="journeyBar">
+      <div class="subhead" style="margin-top:16px">
+        <h3 data-i18n="ov.map.h">Mapa de decisão · 4 etapas organizadas no menu lateral</h3>
+        <span data-i18n="ov.map.n">Clique em qualquer etapa ou escolha um módulo específico à esquerda</span>
+      </div>
+      <section class="journey-bar" aria-label="Fluxo de decisão em 4 etapas" id="journeyBar">
     <button class="step-card" data-step="1" aria-pressed="true">
       <div class="step-card-top"><span class="step-num"><i>1</i><span data-i18n="st.1.tag">Decisão 1</span></span><span class="step-cadence" data-i18n="ms.d1c">Semanal · operacional</span></div>
       <strong data-i18n="st.1.title">Diagnosticar programa e adesão</strong>
@@ -1402,32 +1592,15 @@
       <div class="step-owner"><span data-i18n="st.who">Quem usa:</span> <b data-i18n="st.4.who">Liderança & Produto</b></div>
     </button>
   </section>
+    </section>
 
-  <!-- LIVE REACTIVE INSIGHTS STRIP -->
-  <section class="live-insights" id="liveInsightsBar" aria-live="polite" aria-label="Insights ao vivo"></section>
+    <!-- ==================== STEP 1 CONTAINER (5 SEPARATED MODULES) ==================== -->
+    <section class="step-panel" id="panel-1" data-step-panel="1" hidden>
+      <div class="tip-banner" data-tip="1"><span class="tip-ico">💡</span><div class="tip-txt" data-i18n-html="tip.1"></div><button class="tip-close" data-dismiss-tip aria-label="Fechar dica">✕</button></div>
 
-  <!-- VIEW MODE BAR -->
-  <div class="step-toolbar">
-    <div class="step-context" id="stepContext"></div>
-    <div class="view-toggle" role="group" aria-label="Modo de visualização">
-      <button id="modeStep" aria-pressed="true" data-i18n="vm.step">Passo a passo</button>
-      <button id="modeAll" aria-pressed="false" data-i18n="vm.all">Visão completa</button>
-    </div>
-  </div>
-
-  <!-- ==================== STEP 1: DIAGNOSE, ACTIONS & AUDITABLE PROOFS ==================== -->
-  <section class="step-panel" id="panel-1" data-step-panel="1">
-    <div class="step-banner">
-      <div class="step-banner-left">
-        <span class="step-pill-lg" data-i18n="sp.1">Etapa 1 de 4</span>
-        <h2 data-i18n="st.1.title">Diagnosticar programa e adesão</h2>
-      </div>
-      <span class="sub-meta" data-i18n="sec.perf.n">Clique em qualquer card para abrir a memória de cálculo e a prova</span>
-    </div>
-
-    <div class="tip-banner" data-tip="1"><span class="tip-ico">💡</span><div class="tip-txt" data-i18n-html="tip.1"></div><button class="tip-close" data-dismiss-tip aria-label="Fechar dica">✕</button></div>
-
-    <!-- Auto-Generated Monday Action Plan -->
+      <section class="mod-pane" id="mod-actions" data-mod="actions" data-mod-step="1" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g1">1 · Diagnóstico &amp; Adesão</span><h2 data-i18n="mod.actions.n">Plano de Ação</h2></div><span class="sub-meta" data-i18n="sec.perf.n">Clique em qualquer card para abrir a memória de cálculo e a prova</span></div>
+        <!-- Auto-Generated Monday Action Plan -->
     <div class="subhead" style="margin-top:6px">
       <h3 data-i18n="sec.act">Plano de ação da semana</h3>
       <span id="act-n"></span>
@@ -1439,15 +1612,21 @@
         <span class="proof-cue" style="margin-top:0" data-i18n="pf.cue">Ver prova e memória de cálculo ↗</span>
       </div>
     </div>
+      </section>
 
-    <!-- 8 Clickable KPI Tiles -->
+      <section class="mod-pane" id="mod-kpis" data-mod="kpis" data-mod-step="1" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g1">1 · Diagnóstico &amp; Adesão</span><h2 data-i18n="mod.kpis.n">KPIs do Programa (8)</h2></div><span class="sub-meta" data-i18n="sec.perf.delta">Variação sobre a semana anterior · clique no card para auditar</span></div>
+        <!-- 8 Clickable KPI Tiles -->
     <div class="subhead">
       <h3 data-i18n="sec.perf">Desempenho do programa</h3>
       <span data-i18n="sec.perf.delta">Variação sobre a semana anterior · clique no card para auditar</span>
     </div>
     <div class="grid kpis" id="kpis"></div>
+      </section>
 
-    <!-- Weekly Briefing + Alerts -->
+      <section class="mod-pane" id="mod-briefing" data-mod="briefing" data-mod-step="1" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g1">1 · Diagnóstico &amp; Adesão</span><h2 data-i18n="mod.briefing.n">Briefing &amp; Alertas</h2></div><span class="sub-meta" data-i18n="ai.sub">Síntese determinística e alertas antes de escalar a campanha</span></div>
+        <!-- Weekly Briefing + Alerts -->
     <div class="subhead">
       <h3 data-i18n="ai.h">O que mudou nesta semana</h3>
       <span data-i18n="ai.sub">Síntese determinística e alertas antes de escalar a campanha</span>
@@ -1465,8 +1644,11 @@
       </div>
       <div class="card-proof-foot"><span class="proof-cue" data-i18n="pf.cue">Ver prova e memória de cálculo ↗</span></div>
     </div>
+      </section>
 
-    <!-- Adoption 3-col -->
+      <section class="mod-pane" id="mod-adoption" data-mod="adoption" data-mod-step="1" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g1">1 · Diagnóstico &amp; Adesão</span><h2 data-i18n="mod.adoption.n">Share, Funil &amp; Propensão</h2></div><span class="sub-meta" data-i18n="sec.adoption.n">Onde intervir: documentos, propensão ou participação</span></div>
+        <!-- Adoption 3-col -->
     <div class="subhead">
       <h3 data-i18n="sec.adoption">Adesão de fornecedores e alavancas</h3>
       <span data-i18n="sec.adoption.n">Onde intervir: documentos, propensão ou participação</span>
@@ -1515,8 +1697,11 @@
         <div class="card-proof-foot"><span class="proof-cue" data-i18n="pf.cue">Ver prova e memória de cálculo ↗</span></div>
       </div>
     </div>
+      </section>
 
-    <!-- Friction Reduction -->
+      <section class="mod-pane" id="mod-friction" data-mod="friction" data-mod-step="1" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g1">1 · Diagnóstico &amp; Adesão</span><h2 data-i18n="mod.friction.n">Fricção &amp; Alavancas (5)</h2></div><span class="sub-meta" data-i18n="fr.sub">Comparativo de conversão por etapa com e sem IA de documentos</span></div>
+        <!-- Friction Reduction -->
     <div class="subhead">
       <h3 data-i18n="sec.friction">Impacto da redução de fricção</h3>
       <span data-i18n="fr.sub">Comparativo de conversão por etapa com e sem IA de documentos</span>
@@ -1546,26 +1731,16 @@
       <div class="levers" id="levers"></div>
       <div class="fnote" style="margin-top:10px" data-i18n="lv.note"></div>
     </div>
+      </section>
+    </section>
 
-    <div class="step-footer-nav" data-step-nav>
-      <button class="step-nav-btn" disabled>←</button>
-      <button class="step-nav-btn primary" data-go-step="2"><span data-i18n="nav.next2">Próximo · Etapa 2: Projeção de saldo</span> →</button>
-    </div>
-  </section>
+    <!-- ==================== STEP 2 CONTAINER (2 SEPARATED MODULES) ==================== -->
+    <section class="step-panel" id="panel-2" data-step-panel="2" hidden>
+      <div class="tip-banner" data-tip="2"><span class="tip-ico">💡</span><div class="tip-txt" data-i18n-html="tip.2"></div><button class="tip-close" data-dismiss-tip aria-label="Fechar dica">✕</button></div>
 
-  <!-- ==================== STEP 2: FORECAST & APPROVED LIMIT CHECK ==================== -->
-  <section class="step-panel" id="panel-2" data-step-panel="2" hidden>
-    <div class="step-banner">
-      <div class="step-banner-left">
-        <span class="step-pill-lg" data-i18n="sp.2">Etapa 2 de 4</span>
-        <h2 data-i18n="st.2.title">Projetar saldo e testar limites</h2>
-      </div>
-      <span class="sub-meta" data-i18n="st.2.meta">Previsibilidade de saldo, limite aprovado e backtest (meta ≤ 8%)</span>
-    </div>
-
-    <div class="tip-banner" data-tip="2"><span class="tip-ico">💡</span><div class="tip-txt" data-i18n-html="tip.2"></div><button class="tip-close" data-dismiss-tip aria-label="Fechar dica">✕</button></div>
-
-    <div class="card">
+      <section class="mod-pane" id="mod-forecast" data-mod="forecast" data-mod-step="2" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g2">2 · Projeção &amp; Limites</span><h2 data-i18n="mod.forecast.n">Projeção &amp; Limite</h2></div><span class="sub-meta" data-i18n="st.2.meta">Previsibilidade de saldo, limite aprovado e backtest (meta ≤ 8%)</span></div>
+        <div class="card">
       <div class="chead">
         <div>
           <div class="lbl" data-i18n="fc.lbl">Previsibilidade</div>
@@ -1621,8 +1796,11 @@
         </div>
       </details>
     </div>
+      </section>
 
-    <div class="grid grid-2" style="margin-top:14px">
+      <section class="mod-pane" id="mod-backtest" data-mod="backtest" data-mod-step="2" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g2">2 · Projeção &amp; Limites</span><h2 data-i18n="mod.backtest.n">Sensibilidade &amp; Backtest</h2></div><span class="sub-meta" data-i18n="acc.n">Erro percentual absoluto por semana apurada. Quanto menor, melhor.</span></div>
+        <div class="grid grid-2" style="margin-top:14px">
       <div class="card">
         <div class="lbl" data-i18n="cs.lbl">Sensibilidade de fechamento</div>
         <h3 data-i18n="cs.h">Saldo final por cenário</h3>
@@ -1641,26 +1819,16 @@
         <p id="accuracy-note"></p>
       </div>
     </div>
+      </section>
+    </section>
 
-    <div class="step-footer-nav" data-step-nav>
-      <button class="step-nav-btn" data-go-step="1">← <span data-i18n="nav.prev1">Etapa 1: Diagnóstico</span></button>
-      <button class="step-nav-btn primary" data-go-step="3"><span data-i18n="nav.next3">Próximo · Etapa 3: Pipeline de âncoras</span> →</button>
-    </div>
-  </section>
+    <!-- ==================== STEP 3 CONTAINER (2 SEPARATED MODULES) ==================== -->
+    <section class="step-panel" id="panel-3" data-step-panel="3" hidden>
+      <div class="tip-banner" data-tip="3"><span class="tip-ico">💡</span><div class="tip-txt" data-i18n-html="tip.3"></div><button class="tip-close" data-dismiss-tip aria-label="Fechar dica">✕</button></div>
 
-  <!-- ==================== STEP 3: ANCHOR PIPELINE (UPDATED TO 3T26) ==================== -->
-  <section class="step-panel" id="panel-3" data-step-panel="3" hidden>
-    <div class="step-banner">
-      <div class="step-banner-left">
-        <span class="step-pill-lg" data-i18n="sp.3">Etapa 3 de 4</span>
-        <h2 data-i18n="sec.pipe">Pipeline de âncoras · cross-sell de risco sacado</h2>
-      </div>
-      <span class="sub-meta" data-i18n="sec.pipe.n">Receitas públicas 3T26 (nov/2026) + hipóteses editáveis</span>
-    </div>
-
-    <div class="tip-banner" data-tip="3"><span class="tip-ico">💡</span><div class="tip-txt" data-i18n-html="tip.3"></div><button class="tip-close" data-dismiss-tip aria-label="Fechar dica">✕</button></div>
-
-    <div class="card">
+      <section class="mod-pane" id="mod-pipeline" data-mod="pipeline" data-mod-step="3" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g3">3 · Pipeline Âncoras 3T26</span><h2 data-i18n="mod.pipeline.n">Modelo Editável</h2></div><span class="sub-meta" data-i18n="sec.pipe.n">Receitas públicas 3T26 (nov/2026) + hipóteses editáveis</span></div>
+        <div class="card">
       <div class="chead">
         <div style="max-width:78ch">
           <div class="lbl" data-i18n="pp.lbl">Modelo de dimensionamento</div>
@@ -1716,59 +1884,26 @@
       </div>
       <p class="caveat" data-i18n="pp.caveat"></p>
     </div>
+      </section>
 
-    <div class="subhead">
+      <section class="mod-pane" id="mod-anchors" data-mod="anchors" data-mod-step="3" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g3">3 · Pipeline Âncoras 3T26</span><h2 data-i18n="mod.anchors.n">Fichas das 5 Âncoras</h2></div><span class="sub-meta" data-i18n="pp.cards.n">Onde investigar e qual validação destrava cada conta</span></div>
+        <div class="subhead">
       <h3 data-i18n="pp.cards.h">Fichas rápidas por âncora (3T26)</h3>
       <span data-i18n="pp.cards.n">Onde investigar e qual validação destrava cada conta</span>
     </div>
     <div class="pipe-detail" id="pipe-detail"></div>
+      </section>
+    </section>
 
-    <div class="step-footer-nav" data-step-nav>
-      <button class="step-nav-btn" data-go-step="2">← <span data-i18n="nav.prev2">Etapa 2: Projeção de saldo</span></button>
-      <button class="step-nav-btn primary" data-go-step="4"><span data-i18n="nav.next4">Próximo · Etapa 4: Mercado</span> →</button>
-    </div>
-  </section>
+    <!-- ==================== STEP 4 CONTAINER (5 SEPARATED MODULES) ==================== -->
+    <section class="step-panel" id="panel-4" data-step-panel="4" hidden>
+      <div class="tip-banner" data-tip="4"><span class="tip-ico">💡</span><div class="tip-txt" data-i18n-html="tip.4"></div><button class="tip-close" data-dismiss-tip aria-label="Fechar dica">✕</button></div>
+      <div id="mktSubnav" hidden></div>
 
-  <!-- ==================== STEP 4: MARKET & COMPETITION (4 INTERACTIVE MODULES) ==================== -->
-  <section class="step-panel" id="panel-4" data-step-panel="4" hidden>
-    <div class="step-banner">
-      <div class="step-banner-left">
-        <span class="step-pill-lg" data-i18n="sp.4">Etapa 4 de 4</span>
-        <h2 data-i18n="sec.mkt">Mercado e concorrência</h2>
-      </div>
-      <span class="sub-meta" data-i18n="sec.mkt.n">Inteligência externa · protótipo funcional ilustrativo pronto para integração</span>
-    </div>
-
-    <div class="card maturity-card">
-      <div class="maturity-top">
-        <div>
-          <div class="lbl" data-i18n="mk.mat.lbl">Composição atual de dados no cockpit</div>
-          <h3 data-i18n="mk.mat.h">Arquitetura dos 4 módulos externos (Fase 2)</h3>
-        </div>
-        <span class="proto-pill amber" data-i18n="mk.proto">Feeds ilustrativos · pronto p/ APIs</span>
-      </div>
-      <div class="maturity-bar" role="img" aria-label="80% interno, 15% pipeline, 5% mercado">
-        <div class="m-seg-1"></div><div class="m-seg-2"></div><div class="m-seg-3"></div>
-      </div>
-      <div class="maturity-legend">
-        <span><i style="background:var(--bar-citi)"></i><strong data-i18n="mk.m1">80% dados internos do programa</strong></span>
-        <span><i style="background:var(--bar-peers)"></i><strong data-i18n="mk.m2">15% pipeline interno & 3T26 público</strong></span>
-        <span><i style="background:var(--bar-fidc)"></i><strong data-i18n="mk.m3">5% mercado (modelado abaixo p/ conectar)</strong></span>
-      </div>
-      <p class="note" style="margin-top:8px" data-i18n="mk.note"></p>
-    </div>
-
-    <div class="tip-banner" data-tip="4"><span class="tip-ico">💡</span><div class="tip-txt" data-i18n-html="tip.4"></div><button class="tip-close" data-dismiss-tip aria-label="Fechar dica">✕</button></div>
-
-    <div class="mkt-subnav" role="group" aria-label="Módulos de mercado" id="mktSubnav">
-      <button data-mmod="all" aria-pressed="true"><span data-i18n="mk.tab.all">Todos os 4 módulos</span></button>
-      <button data-mmod="1" aria-pressed="false"><span class="mnum">4.1</span><span data-i18n="mk.1h">Concorrentes por âncora</span></button>
-      <button data-mmod="2" aria-pressed="false"><span class="mnum">4.2</span><span data-i18n="mk.2h">Preço comparado</span></button>
-      <button data-mmod="3" aria-pressed="false"><span class="mnum">4.3</span><span data-i18n="mk.3h">Share real</span></button>
-      <button data-mmod="4" aria-pressed="false"><span class="mnum">4.4</span><span data-i18n="mk.4h">Sinais externos</span></button>
-    </div>
-
-    <!-- 4.1 Concorrentes -->
+      <section class="mod-pane" id="mod-comp" data-mod="comp" data-mod-step="4" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g4">4 · Mercado &amp; Produtos</span><h2 data-i18n="mod.comp.n">Concorrentes (IAS 7)</h2></div><span class="sub-meta" data-i18n="mk.1q">Quais bancos e FIDCs já operam o risco sacado de cada âncora?</span></div>
+        <!-- 4.1 Concorrentes -->
     <article class="card mkt-mod" data-mkt-panel="1">
       <div class="mkt-mod-head">
         <div>
@@ -1789,8 +1924,11 @@
         <div class="infra-logos" id="infra-1" style="margin-top:0"></div>
       </div>
     </article>
+      </section>
 
-    <!-- 4.2 Preço comparado -->
+      <section class="mod-pane" id="mod-pricing" data-mod="pricing" data-mod-step="4" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g4">4 · Mercado &amp; Produtos</span><h2 data-i18n="mod.pricing.n">Preço CDI + x</h2></div><span class="sub-meta" data-i18n="mk.2q">A taxa do Citi é competitiva contra o mercado (CDI + x)?</span></div>
+        <!-- 4.2 Preço comparado -->
     <article class="card mkt-mod" data-mkt-panel="2">
       <div class="mkt-mod-head">
         <div>
@@ -1830,8 +1968,11 @@
         <div class="infra-logos" id="infra-2" style="margin-top:0"></div>
       </div>
     </article>
+      </section>
 
-    <!-- 4.3 Share real -->
+      <section class="mod-pane" id="mod-share" data-mod="share" data-mod-step="4" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g4">4 · Mercado &amp; Produtos</span><h2 data-i18n="mod.share.n">Share Real (Registradoras)</h2></div><span class="sub-meta" data-i18n="mk.3q">Que parte do contas a pagar elegível de cada âncora o Citi já cobre frente aos pares?</span></div>
+        <!-- 4.3 Share real -->
     <article class="card mkt-mod" data-mkt-panel="3">
       <div class="mkt-mod-head">
         <div>
@@ -1863,8 +2004,11 @@
         <div class="infra-logos" id="infra-3" style="margin-top:0"></div>
       </div>
     </article>
+      </section>
 
-    <!-- 4.4 Sinais externos -->
+      <section class="mod-pane" id="mod-signals" data-mod="signals" data-mod-step="4" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g4">4 · Mercado &amp; Produtos</span><h2 data-i18n="mod.signals.n">Sinais Externos 3T26</h2></div><span class="sub-meta" data-i18n="mk.4q">O crédito da âncora e a infraestrutura de mercado estão a favor ou contra?</span></div>
+        <!-- 4.4 Sinais externos -->
     <article class="card mkt-mod" data-mkt-panel="4">
       <div class="mkt-mod-head">
         <div>
@@ -1886,24 +2030,45 @@
         <div class="infra-logos" id="infra-4" style="margin-top:0"></div>
       </div>
     </article>
+      </section>
 
-    <!-- Citi Public Product Reference -->
-    <div id="products" style="margin-top:18px"></div>
-
-    <div class="step-footer-nav" data-step-nav>
-      <button class="step-nav-btn" data-go-step="3">← <span data-i18n="nav.prev3">Etapa 3: Pipeline de âncoras</span></button>
-      <button class="step-nav-btn primary" id="openDeckFooter">
-        <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5l8 4.5-8 4.5z" fill="currentColor"/></svg>
-        <span data-i18n="nav.present.end">Abrir apresentação executiva (17 slides)</span>
-      </button>
+      <section class="mod-pane" id="mod-products" data-mod="products" data-mod-step="4" hidden>
+        <div class="mod-head"><div><span class="step-pill-lg" data-i18n="sb.g4">4 · Mercado &amp; Produtos</span><h2 data-i18n="mod.products.n">Produtos Citi &amp; Práticas</h2></div><span class="sub-meta" data-i18n="sec.mkt.n">Inteligência externa · protótipo funcional ilustrativo pronto para integração</span></div>
+        <div class="card maturity-card">
+      <div class="maturity-top">
+        <div>
+          <div class="lbl" data-i18n="mk.mat.lbl">Composição atual de dados no cockpit</div>
+          <h3 data-i18n="mk.mat.h">Arquitetura dos 4 módulos externos (Fase 2)</h3>
+        </div>
+        <span class="proto-pill amber" data-i18n="mk.proto">Feeds ilustrativos · pronto p/ APIs</span>
+      </div>
+      <div class="maturity-bar" role="img" aria-label="80% interno, 15% pipeline, 5% mercado">
+        <div class="m-seg-1"></div><div class="m-seg-2"></div><div class="m-seg-3"></div>
+      </div>
+      <div class="maturity-legend">
+        <span><i style="background:var(--bar-citi)"></i><strong data-i18n="mk.m1">80% dados internos do programa</strong></span>
+        <span><i style="background:var(--bar-peers)"></i><strong data-i18n="mk.m2">15% pipeline interno & 3T26 público</strong></span>
+        <span><i style="background:var(--bar-fidc)"></i><strong data-i18n="mk.m3">5% mercado (modelado abaixo p/ conectar)</strong></span>
+      </div>
+      <p class="note" style="margin-top:8px" data-i18n="mk.note"></p>
     </div>
-  </section>
+        <!-- Citi Public Product Reference -->
+    <div id="products" style="margin-top:18px"></div>
+      </section>
+    </section>
 
-  <footer>
+    <!-- MODULE SEQUENTIAL PREV / NEXT NAVIGATION FOOTER -->
+    <div class="step-footer-nav" id="modPager">
+      <button type="button" class="step-nav-btn" id="modPrevBtn">← <span id="modPrevLbl"></span></button>
+      <button type="button" class="step-nav-btn primary" id="modNextBtn"><span id="modNextLbl"></span> →</button>
+    </div>
+
+    <footer>
     <div data-i18n-html="ft.guard"></div>
     <div data-i18n-html="ft.by"></div>
   </footer>
-</main>
+  </main>
+</div>
 
 <!-- ==================== CSV DATA LOADER MODAL ==================== -->
 <div class="modal-backdrop" id="m-data" hidden role="dialog" aria-modal="true" aria-labelledby="md-title" tabindex="-1">
@@ -2460,6 +2625,32 @@
     "of.k2":["How supplier consent works","Como o consentimento funciona"],
     "of.close":["Close","Fechar"],
     "of.note":["Demonstration mode only: toggling simulated connection stays 100% in your browser (localStorage) and sends no data externally.","Modo demonstrativo: alternar a conexão simulada fica 100% no seu navegador (localStorage) e não envia dados para fora."],
+    "nav.menu":["Modules","Módulos"],
+    "nav.menu.aria":["Toggle left modules sidebar","Alternar menu lateral de módulos"],
+    "vm.mod":["One module","Por módulo"],
+    "sb.g0":["Overview","Visão Geral"],
+    "sb.g1":["1 · Diagnose & Onboarding","1 · Diagnóstico & Adesão"],
+    "sb.g2":["2 · Forecast & Limits","2 · Projeção & Limites"],
+    "sb.g3":["3 · 3Q26 Anchor Pipeline","3 · Pipeline Âncoras 3T26"],
+    "sb.g4":["4 · Market & Products","4 · Mercado & Produtos"],
+    "sb.g5":["Tools & AI","Ferramentas & IA"],
+    "ov.map.h":["Decision map · 4 steps organized in the left menu","Mapa de decisão · 4 etapas organizadas no menu lateral"],
+    "ov.map.n":["Click any step card below or jump straight to a module on the left","Clique em qualquer etapa abaixo ou escolha um módulo específico à esquerda"],
+    "mod.overview.n":["Executive Overview","Resumo Executivo"],
+    "mod.actions.n":["Weekly Action Plan","Plano de Ação"],
+    "mod.kpis.n":["Program KPIs (8)","KPIs do Programa (8)"],
+    "mod.briefing.n":["Briefing & Alerts","Briefing & Alertas"],
+    "mod.adoption.n":["Wallet, Funnel & Propensity","Share, Funil & Propensão"],
+    "mod.friction.n":["Friction & Levers (5)","Fricção & Alavancas (5)"],
+    "mod.forecast.n":["Balance Forecast & Limit","Projeção & Limite"],
+    "mod.backtest.n":["Sensitivity & Backtest","Sensibilidade & Backtest"],
+    "mod.pipeline.n":["Editable Sizing Model","Modelo Editável"],
+    "mod.anchors.n":["5 Anchor Profiles (3Q26)","Fichas das 5 Âncoras"],
+    "mod.comp.n":["4.1 Competitors (IAS 7)","4.1 Concorrentes (IAS 7)"],
+    "mod.pricing.n":["4.2 Pricing CDI + x","4.2 Preço CDI + x"],
+    "mod.share.n":["4.3 Real Share (Registrars)","4.3 Share Real (Registradoras)"],
+    "mod.signals.n":["4.4 External Signals 3Q26","4.4 Sinais Externos 3T26"],
+    "mod.products.n":["Citi Products & Practices","Produtos Citi & Práticas"],
   };
 
   // ===== src/data/03-program-data.js =====
@@ -2743,49 +2934,179 @@
   ];
 
   // ===== src/modules/01-state-nav.js =====
-  // ========== STEP NAVIGATION & VIEW MODE ==========
-  let activeStep = 1, viewMode = "step";
-  const STEP_META = {
-    1:() => ({role:T("SCF Specialist · Anchor RM","Especialista SCF · Gerente da Âncora"), cadence:T("Every Monday","Toda segunda-feira"), question:T("What are this week's actions, and where to intervene in onboarding?","Quais as ações da semana e onde intervir na adesão?")}),
-    2:() => ({role:T("SCF Specialist · Credit Risk","Especialista SCF · Risco de Crédito"), cadence:T("Weekly","Semanal"), question:T("Does the projected balance fit the approved limit and 8% error tolerance?","O saldo projetado cabe no limite aprovado e na tolerância de 8%?")}),
-    3:() => ({role:T("Corporate / SCF Leadership","Liderança Corporate / SCF"), cadence:T("Monthly / Quarterly","Mensal / Trimestral"), question:T("Which anchor to prioritize (3Q26 scale), with what offer and credit limit?","Qual âncora priorizar (escala 3T26), com qual oferta e quanto crédito pedir?")}),
-    4:() => ({role:T("Leadership · Product","Liderança · Produto"), cadence:T("External Intelligence","Inteligência Externa"), question:T("How do competitors, CDI+x pricing, registrars and 3Q26 credit signals shape our strategy?","Como concorrentes, preço CDI+x, registradoras e sinais 3T26 orientam nossa estratégia?")})
-  };
-  function updateStepView(scrollToPanel = false) {
-    document.querySelectorAll(".nav-step-btn").forEach(b => {
-      if (viewMode === "step" && +b.dataset.step === activeStep) b.setAttribute("aria-current", "step");
+  // ========== ORGANIZED LEFT SIDEBAR & 15-MODULE NAVIGATION ==========
+  const MOD_ORDER = [
+    { id: "overview", step: 0, groupKey: "sb.g0", titleKey: "mod.overview.n" },
+    { id: "actions",  step: 1, groupKey: "sb.g1", titleKey: "mod.actions.n" },
+    { id: "kpis",     step: 1, groupKey: "sb.g1", titleKey: "mod.kpis.n" },
+    { id: "briefing", step: 1, groupKey: "sb.g1", titleKey: "mod.briefing.n" },
+    { id: "adoption", step: 1, groupKey: "sb.g1", titleKey: "mod.adoption.n" },
+    { id: "friction", step: 1, groupKey: "sb.g1", titleKey: "mod.friction.n" },
+    { id: "forecast", step: 2, groupKey: "sb.g2", titleKey: "mod.forecast.n" },
+    { id: "backtest", step: 2, groupKey: "sb.g2", titleKey: "mod.backtest.n" },
+    { id: "pipeline", step: 3, groupKey: "sb.g3", titleKey: "mod.pipeline.n" },
+    { id: "anchors",  step: 3, groupKey: "sb.g3", titleKey: "mod.anchors.n" },
+    { id: "comp",     step: 4, groupKey: "sb.g4", titleKey: "mod.comp.n" },
+    { id: "pricing",  step: 4, groupKey: "sb.g4", titleKey: "mod.pricing.n" },
+    { id: "share",    step: 4, groupKey: "sb.g4", titleKey: "mod.share.n" },
+    { id: "signals",  step: 4, groupKey: "sb.g4", titleKey: "mod.signals.n" },
+    { id: "products", step: 4, groupKey: "sb.g4", titleKey: "mod.products.n" }
+  ];
+  const STEP_DEFAULT_MOD = { 0: "overview", 1: "actions", 2: "forecast", 3: "pipeline", 4: "comp" };
+
+  let activeMod = "overview", activeStep = 0, viewMode = "step";
+  try {
+    const savedCollapsed = localStorage.getItem("scf-sidebar");
+    if (savedCollapsed === "collapsed" && window.innerWidth > 1024) document.body.classList.add("sidebar-collapsed");
+  } catch (e) {}
+
+  function closeMobileSidebar() {
+    document.body.classList.remove("sidebar-open");
+    if ($("sidebarBackdrop")) $("sidebarBackdrop").hidden = true;
+    if ($("menuToggle") && window.innerWidth <= 1024) $("menuToggle").setAttribute("aria-expanded", "false");
+  }
+  function openMobileSidebar() {
+    document.body.classList.add("sidebar-open");
+    if ($("sidebarBackdrop")) $("sidebarBackdrop").hidden = false;
+    if ($("menuToggle")) $("menuToggle").setAttribute("aria-expanded", "true");
+  }
+  if ($("menuToggle")) {
+    $("menuToggle").onclick = () => {
+      if (window.innerWidth <= 1024) {
+        if (document.body.classList.contains("sidebar-open")) closeMobileSidebar();
+        else openMobileSidebar();
+      } else {
+        const collapsed = document.body.classList.toggle("sidebar-collapsed");
+        $("menuToggle").setAttribute("aria-expanded", String(!collapsed));
+        try { localStorage.setItem("scf-sidebar", collapsed ? "collapsed" : "open"); } catch (e) {}
+      }
+    };
+  }
+  if ($("sbCloseMob")) $("sbCloseMob").onclick = closeMobileSidebar;
+  if ($("sidebarBackdrop")) $("sidebarBackdrop").onclick = closeMobileSidebar;
+
+  function updateSidebarBadges() {
+    if ($("sb-b-actions") && Array.isArray(ACTS)) {
+      const openCount = ACTS.length;
+      $("sb-b-actions").textContent = String(openCount);
+    }
+    if ($("sb-b-flags") && D && D.flags) {
+      const i = Math.max(0, Math.min(D.flags.length - 1, (typeof week === "number" ? week : W) - 1));
+      const fl = D.flags[i] || 0;
+      $("sb-b-flags").hidden = fl === 0;
+      $("sb-b-flags").textContent = fl ? `${fl}` : "";
+    }
+    if ($("sb-b-lim")) {
+      const cls = (typeof FS.kBase === "number" && FS.kBase >= 0) ? "bad" : (typeof FS.kHigh === "number" && FS.kHigh >= 0) ? "warn" : "";
+      $("sb-b-lim").className = "sb-dot" + (cls ? " " + cls : "");
+    }
+    if ($("sb-b-flow") && typeof totals === "function") {
+      const t = totals();
+      $("sb-b-flow").textContent = bn(t.flow, 1);
+    }
+  }
+
+  function updateStepView(scrollToTarget = false) {
+    const idx = Math.max(0, MOD_ORDER.findIndex(m => m.id === activeMod));
+    const cur = MOD_ORDER[idx];
+    activeStep = cur.step;
+
+    // Sidebar active highlight
+    document.querySelectorAll("[data-mod-btn]").forEach(b => {
+      if (b.dataset.modBtn === activeMod) b.setAttribute("aria-current", "page");
       else b.removeAttribute("aria-current");
     });
-    document.querySelectorAll(".step-card").forEach(b => b.setAttribute("aria-pressed", viewMode === "all" ? "false" : String(+b.dataset.step === activeStep)));
-    $("modeStep").setAttribute("aria-pressed", String(viewMode === "step"));
-    $("modeAll").setAttribute("aria-pressed", String(viewMode === "all"));
-    document.querySelectorAll("[data-step-panel]").forEach(p => { p.hidden = viewMode === "step" && +p.dataset.stepPanel !== activeStep; });
-    document.querySelectorAll("[data-step-nav]").forEach(n => { n.style.display = viewMode === "step" ? "flex" : "none"; });
+
+    // Overview step cards pressed state
+    document.querySelectorAll(".step-card").forEach(b => {
+      b.setAttribute("aria-pressed", viewMode === "all" ? "false" : String(+b.dataset.step === activeStep));
+    });
+
+    if ($("modeStep")) $("modeStep").setAttribute("aria-pressed", String(viewMode === "step"));
+    if ($("modeAll")) $("modeAll").setAttribute("aria-pressed", String(viewMode === "all"));
+
+    // Show/hide Step containers & individual separated modules cleanly
     if (viewMode === "all") {
-      $("stepContext").innerHTML = `<strong>${T("Full cockpit view","Visão completa do cockpit")}</strong> · <span>${T("All 4 decision steps displayed sequentially.","Todas as 4 etapas de decisão exibidas em sequência.")}</span>`;
+      document.querySelectorAll("[data-step-panel]").forEach(p => { p.hidden = false; });
+      document.querySelectorAll("[data-mod]").forEach(m => { m.hidden = false; });
+      if ($("modPager")) $("modPager").hidden = true;
+      if ($("stepContext")) {
+        $("stepContext").innerHTML = `<strong>${T("Full Intel Center view", "Visão completa do Intel Center")}</strong> · <span>${T("All 15 modules displayed sequentially.", "Todos os 15 módulos exibidos em sequência.")}</span>`;
+      }
     } else {
-      const m = STEP_META[activeStep]();
-      $("stepContext").innerHTML = `<span class="role-chip">${m.role} · ${m.cadence}</span> <strong>${m.question}</strong>`;
+      document.querySelectorAll("[data-step-panel]").forEach(p => {
+        p.hidden = +p.dataset.stepPanel !== cur.step;
+      });
+      document.querySelectorAll("[data-mod]").forEach(m => {
+        m.hidden = m.dataset.mod !== activeMod;
+      });
+      if ($("modPager")) {
+        $("modPager").hidden = false;
+        const prev = idx > 0 ? MOD_ORDER[idx - 1] : null;
+        const next = idx < MOD_ORDER.length - 1 ? MOD_ORDER[idx + 1] : null;
+        $("modPrevBtn").disabled = !prev;
+        $("modPrevLbl").textContent = prev ? L(I18N[prev.titleKey]) : T("Start", "Início");
+        $("modNextBtn").disabled = false;
+        $("modNextLbl").textContent = next ? L(I18N[next.titleKey]) : T("Present (17 slides)", "Apresentar (17 slides)");
+      }
+      if ($("stepContext")) {
+        $("stepContext").innerHTML = `<span class="role-chip">${L(I18N[cur.groupKey])}</span> <strong>${L(I18N[cur.titleKey])}</strong> <span style="color:var(--muted);font-size:12px">(${idx + 1}/${MOD_ORDER.length})</span>`;
+      }
     }
-    if (scrollToPanel) { const t = $("panel-" + activeStep); if (t) t.scrollIntoView({behavior:"smooth", block:"start"}); }
+
+    if (scrollToTarget) {
+      if (viewMode === "all") {
+        const elTarget = $("mod-" + activeMod);
+        if (elTarget) elTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+    updateSidebarBadges();
   }
+
+  function goMod(modId, scroll = true) {
+    if (!MOD_ORDER.some(m => m.id === modId)) modId = "overview";
+    activeMod = modId;
+    closeMobileSidebar();
+    updateStepView(scroll);
+  }
+
   function goStep(step, scroll = true) {
-    activeStep = step;
-    if (viewMode === "all") updateStepView(true);
-    else { updateStepView(false); if (scroll) $("journeyBar").scrollIntoView({behavior:"smooth", block:"nearest"}); }
+    const targetMod = STEP_DEFAULT_MOD[step] || "overview";
+    goMod(targetMod, scroll);
   }
-  document.querySelectorAll("[data-step]").forEach(b => b.addEventListener("click", () => goStep(+b.dataset.step, true)));
-  document.querySelectorAll("[data-go-step]").forEach(b => b.addEventListener("click", () => {
-    activeStep = +b.dataset.goStep; updateStepView(false); $("panel-" + activeStep).scrollIntoView({behavior:"smooth", block:"start"});
-  }));
-  $("modeStep").onclick = () => { viewMode = "step"; updateStepView(false); };
-  $("modeAll").onclick  = () => { viewMode = "all";  updateStepView(false); };
+
+  document.querySelectorAll("[data-mod-btn]").forEach(b => {
+    b.addEventListener("click", () => goMod(b.dataset.modBtn, true));
+  });
+  document.querySelectorAll("[data-step]").forEach(b => {
+    b.addEventListener("click", () => goStep(+b.dataset.step, true));
+  });
+  if ($("brandHome")) {
+    $("brandHome").addEventListener("click", e => { e.preventDefault(); goMod("overview", true); });
+  }
+  if ($("modPrevBtn")) {
+    $("modPrevBtn").onclick = () => {
+      const idx = MOD_ORDER.findIndex(m => m.id === activeMod);
+      if (idx > 0) goMod(MOD_ORDER[idx - 1].id, true);
+    };
+  }
+  if ($("modNextBtn")) {
+    $("modNextBtn").onclick = () => {
+      const idx = MOD_ORDER.findIndex(m => m.id === activeMod);
+      if (idx < MOD_ORDER.length - 1) goMod(MOD_ORDER[idx + 1].id, true);
+      else if (typeof openDeck === "function") openDeck(0);
+    };
+  }
+  $("modeStep").onclick = () => { viewMode = "step"; closeMobileSidebar(); updateStepView(false); };
+  $("modeAll").onclick  = () => { viewMode = "all";  closeMobileSidebar(); updateStepView(false); };
 
   // Scroll progress bar
   addEventListener("scroll", () => {
     const max = document.documentElement.scrollHeight - innerHeight;
     $("scrollProg").style.width = (max > 0 ? Math.min(100, 100 * scrollY / max) : 0) + "%";
-  }, {passive:true});
+  }, { passive: true });
 
   // Shared accessible modal manager (focus trap + scroll lock + Escape)
   let modalFocus = null;
@@ -2804,6 +3125,7 @@
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   }
   function openSimpleModal(id) {
+    closeMobileSidebar();
     setPlaying(false); modalFocus = document.activeElement;
     const m = $(id); m.hidden = false; syncBodyLock(); m.focus();
   }
@@ -3866,12 +4188,12 @@
     );
 
     const cards = [
-      { step: 1, cls: p1Cls, k: p1Title, pill: p1Pill, txt: p1Text },
-      { step: 2, cls: p2Cls, k: T("Live · Forecast & Limit", "Ao vivo · Projeção e Limite"), pill: p2Pill, txt: p2Text },
-      { step: 3, cls: p3Cls, k: T("Live · Pipeline & Market", "Ao vivo · Pipeline e Mercado"), pill: p3Pill, txt: p3Text }
+      { mod: "kpis", cls: p1Cls, k: p1Title, pill: p1Pill, txt: p1Text },
+      { mod: "forecast", cls: p2Cls, k: T("Live · Forecast & Limit", "Ao vivo · Projeção e Limite"), pill: p2Pill, txt: p2Text },
+      { mod: "pipeline", cls: p3Cls, k: T("Live · Pipeline & Market", "Ao vivo · Pipeline e Mercado"), pill: p3Pill, txt: p3Text }
     ];
     bar.innerHTML = cards.map(c =>
-      `<button type="button" class="li-card ${c.cls}" data-li-step="${c.step}">
+      `<button type="button" class="li-card ${c.cls}" data-li-mod="${c.mod}">
         <span class="li-dot" aria-hidden="true"></span>
         <div class="li-body">
           <div class="li-k"><span>${c.k}</span><span class="li-pill">${c.pill}</span></div>
@@ -3879,12 +4201,13 @@
         </div>
       </button>`
     ).join("");
+    if (typeof updateSidebarBadges === "function") updateSidebarBadges();
   }
 
   if ($("liveInsightsBar")) {
     $("liveInsightsBar").addEventListener("click", e => {
-      const btn = e.target.closest("[data-li-step]");
-      if (btn) goStep(+btn.dataset.liStep, true);
+      const btn = e.target.closest("[data-li-mod]");
+      if (btn) goMod(btn.dataset.liMod, true);
     });
   }
 
@@ -3923,17 +4246,17 @@
       ]
     },
     {
-      sel: "#liveInsightsBar",
-      step: 1,
-      title: ["2. Live Reactive Insights & Clickable Proofs", "2. Insights ao Vivo e Provas Auditáveis"],
+      sel: "#sideNav",
+      mod: "overview",
+      title: ["2. Organized Left Menu (15 Modules)", "2. Menu Lateral Organizado (15 Módulos)"],
       body: [
-        "This <b>Live Insights</b> strip recalculates automatically on every input edit. Below in <b>Step 1</b>, click any KPI or card to inspect its calculation proof, or check the <b>5-Stage Levers</b> board.",
-        "Esta faixa de <b>Insights ao Vivo</b> recalcula automaticamente a cada edição. Abaixo na <b>Etapa 1</b>, clique em qualquer KPI ou card para ver a memória de cálculo ou veja as <b>Alavancas das 5 etapas</b>."
+        "Every module is now cleanly separated in the <b>Left Menu</b> — jump straight to Action Plan, KPIs, Funnel, Forecast, 3Q26 Pipeline, Competitors, Pricing, or Products one by one, or toggle <b>View all</b>.",
+        "Cada módulo está separado no <b>Menu Lateral</b> — acesse diretamente Plano de Ação, KPIs, Funil, Projeção, Pipeline 3T26, Concorrentes, Preço ou Produtos um por um, ou alterne para <b>Ver todos</b>."
       ]
     },
     {
       sel: "#panel-2 .fc-controls",
-      step: 2,
+      mod: "forecast",
       title: ["3. Stress-Test Approved Limit & Forecast", "3. Teste o Limite Aprovado e a Projeção"],
       body: [
         "Change the <b>Approved limit</b> number, switch <b>Downside / Base / Upside</b>, or change the horizon (4 / 8 / 13 weeks) to see the exact breach week and required top-up.",
@@ -3942,7 +4265,7 @@
     },
     {
       sel: "#panel-3 .pipe-presets",
-      step: 3,
+      mod: "pipeline",
       title: ["4. Editable 3Q26 Anchor Pipeline & Market", "4. Pipeline Editável 3T26 e Mercado"],
       body: [
         "All 5 anchor rows use <b>3Q26 public figures</b>. Edit any % input or use quick presets to cascade flow, balance, and spread revenue across the entire cockpit and the <b>17-slide deck</b>.",
@@ -3951,11 +4274,11 @@
     },
     {
       sel: "#aiFab",
-      step: 1,
+      mod: "overview",
       title: ["5. Floating Live Assistant & Presentation", "5. Assistente Flutuante e Apresentação"],
       body: [
-        "Click <b>Ask the Cockpit</b> at the bottom-right anytime for instant offline Q&amp;A, JSON context export, or live <b>AI Analysis ON</b> chat. Ready to present? Click <b>Present (17)</b> in the top bar.",
-        "Clique em <b>Pergunte ao Cockpit</b> no canto inferior direito para Q&amp;A instantâneo offline, exportar JSON ou chat com <b>AI Analysis ON</b>. Pronto para apresentar? Clique em <b>Apresentar (17)</b> no topo."
+        "Click <b>Ask the Cockpit</b> at the bottom-right anytime for instant offline Q&amp;A, JSON context export, or live <b>AI Analysis ON</b> chat (OpenAI or Anthropic). Ready to present? Click <b>Present (17)</b> in the top bar.",
+        "Clique em <b>Pergunte ao Cockpit</b> no canto inferior direito para Q&amp;A instantâneo offline, exportar JSON ou chat com <b>AI Analysis ON</b> (OpenAI ou Anthropic). Pronto para apresentar? Clique em <b>Apresentar (17)</b> no topo."
       ]
     }
   ];
@@ -3997,7 +4320,8 @@
     if (tourIdx < 0 || tourIdx >= TOUR_STOPS.length) { closeTour(); return; }
     clearTourHighlight();
     const stop = TOUR_STOPS[tourIdx];
-    if (stop.step) goStep(stop.step, false);
+    if (stop.mod) goMod(stop.mod, false);
+    else if (stop.step) goStep(stop.step, false);
 
     const el = document.querySelector(stop.sel);
     if (el) {
@@ -5371,7 +5695,7 @@ Write ALL prose fields strictly in ${lang === "pt" ? "Brazilian Portuguese (PT-B
   [...$("deck-dots").children].forEach((d, i) => d.onclick = () => { slideIdx = i; renderSlide(); });
   function openDeck(i = 0) { setPlaying(false); lastFocus = document.activeElement; slideIdx = i; deck.hidden = false; syncBodyLock(); renderSlide(); deck.focus(); }
   function closeDeck() { clearTimers(); deck.hidden = true; syncBodyLock(); if (lastFocus) lastFocus.focus(); }
-  $("openDeck").onclick = () => openDeck(0); $("pipeDeck").onclick = () => openDeck(0); $("openDeckFooter").onclick = () => openDeck(0);
+  $("openDeck").onclick = () => openDeck(0); if ($("pipeDeck")) $("pipeDeck").onclick = () => openDeck(0); if ($("openDeckFooter")) $("openDeckFooter").onclick = () => openDeck(0);
   $("deck-close").onclick = closeDeck;
   $("deck-prev").onclick = () => { if (slideIdx > 0) { slideIdx--; renderSlide(); } };
   $("deck-next").onclick = () => { if (slideIdx < SLIDES.length - 1) { slideIdx++; renderSlide(); } };
@@ -5405,6 +5729,7 @@ Write ALL prose fields strictly in ${lang === "pt" ? "Brazilian Portuguese (PT-B
 
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
+      if (document.body.classList.contains("sidebar-open") && typeof closeMobileSidebar === "function") { closeMobileSidebar(); return; }
       if ($("tourPop") && !$("tourPop").hidden && typeof closeTour === "function") { closeTour(); return; }
       if (!proofModal.hidden) { closeProof(); return; }
       for (const id of SIMPLE_MODALS) { const m = $(id); if (!m.hidden) { closeSimpleModal(m); return; } }
@@ -5477,7 +5802,7 @@ Write ALL prose fields strictly in ${lang === "pt" ? "Brazilian Portuguese (PT-B
   function setLang(l) {
     lang = l; try { localStorage.setItem("scf-lang", l); } catch (e) {}
     document.documentElement.lang = l === "pt" ? "pt-BR" : "en";
-    document.title = T("SCF Brazil · Specialist weekly cockpit (concept)","Risco Sacado Brasil · Cockpit semanal do especialista (conceito)");
+    document.title = T("Early Money · SCF Specialist Weekly Intel Center", "Early Money · Intel Center semanal especialista de SCF");
     document.querySelectorAll("[data-i18n]").forEach(e => { const v = I18N[e.dataset.i18n]; if (v) e.textContent = L(v); });
     document.querySelectorAll("[data-i18n-html]").forEach(e => { const v = I18N[e.dataset.i18nHtml]; if (v) e.innerHTML = L(v); });
     document.querySelectorAll("[data-i18n-aria]").forEach(e => { const v = I18N[e.dataset.i18nAria]; if (v) e.setAttribute("aria-label", L(v)); });

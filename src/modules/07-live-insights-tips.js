@@ -53,12 +53,12 @@
     );
 
     const cards = [
-      { step: 1, cls: p1Cls, k: p1Title, pill: p1Pill, txt: p1Text },
-      { step: 2, cls: p2Cls, k: T("Live · Forecast & Limit", "Ao vivo · Projeção e Limite"), pill: p2Pill, txt: p2Text },
-      { step: 3, cls: p3Cls, k: T("Live · Pipeline & Market", "Ao vivo · Pipeline e Mercado"), pill: p3Pill, txt: p3Text }
+      { mod: "kpis", cls: p1Cls, k: p1Title, pill: p1Pill, txt: p1Text },
+      { mod: "forecast", cls: p2Cls, k: T("Live · Forecast & Limit", "Ao vivo · Projeção e Limite"), pill: p2Pill, txt: p2Text },
+      { mod: "pipeline", cls: p3Cls, k: T("Live · Pipeline & Market", "Ao vivo · Pipeline e Mercado"), pill: p3Pill, txt: p3Text }
     ];
     bar.innerHTML = cards.map(c =>
-      `<button type="button" class="li-card ${c.cls}" data-li-step="${c.step}">
+      `<button type="button" class="li-card ${c.cls}" data-li-mod="${c.mod}">
         <span class="li-dot" aria-hidden="true"></span>
         <div class="li-body">
           <div class="li-k"><span>${c.k}</span><span class="li-pill">${c.pill}</span></div>
@@ -66,12 +66,13 @@
         </div>
       </button>`
     ).join("");
+    if (typeof updateSidebarBadges === "function") updateSidebarBadges();
   }
 
   if ($("liveInsightsBar")) {
     $("liveInsightsBar").addEventListener("click", e => {
-      const btn = e.target.closest("[data-li-step]");
-      if (btn) goStep(+btn.dataset.liStep, true);
+      const btn = e.target.closest("[data-li-mod]");
+      if (btn) goMod(btn.dataset.liMod, true);
     });
   }
 
@@ -110,17 +111,17 @@
       ]
     },
     {
-      sel: "#liveInsightsBar",
-      step: 1,
-      title: ["2. Live Reactive Insights & Clickable Proofs", "2. Insights ao Vivo e Provas Auditáveis"],
+      sel: "#sideNav",
+      mod: "overview",
+      title: ["2. Organized Left Menu (15 Modules)", "2. Menu Lateral Organizado (15 Módulos)"],
       body: [
-        "This <b>Live Insights</b> strip recalculates automatically on every input edit. Below in <b>Step 1</b>, click any KPI or card to inspect its calculation proof, or check the <b>5-Stage Levers</b> board.",
-        "Esta faixa de <b>Insights ao Vivo</b> recalcula automaticamente a cada edição. Abaixo na <b>Etapa 1</b>, clique em qualquer KPI ou card para ver a memória de cálculo ou veja as <b>Alavancas das 5 etapas</b>."
+        "Every module is now cleanly separated in the <b>Left Menu</b> — jump straight to Action Plan, KPIs, Funnel, Forecast, 3Q26 Pipeline, Competitors, Pricing, or Products one by one, or toggle <b>View all</b>.",
+        "Cada módulo está separado no <b>Menu Lateral</b> — acesse diretamente Plano de Ação, KPIs, Funil, Projeção, Pipeline 3T26, Concorrentes, Preço ou Produtos um por um, ou alterne para <b>Ver todos</b>."
       ]
     },
     {
       sel: "#panel-2 .fc-controls",
-      step: 2,
+      mod: "forecast",
       title: ["3. Stress-Test Approved Limit & Forecast", "3. Teste o Limite Aprovado e a Projeção"],
       body: [
         "Change the <b>Approved limit</b> number, switch <b>Downside / Base / Upside</b>, or change the horizon (4 / 8 / 13 weeks) to see the exact breach week and required top-up.",
@@ -129,7 +130,7 @@
     },
     {
       sel: "#panel-3 .pipe-presets",
-      step: 3,
+      mod: "pipeline",
       title: ["4. Editable 3Q26 Anchor Pipeline & Market", "4. Pipeline Editável 3T26 e Mercado"],
       body: [
         "All 5 anchor rows use <b>3Q26 public figures</b>. Edit any % input or use quick presets to cascade flow, balance, and spread revenue across the entire cockpit and the <b>17-slide deck</b>.",
@@ -138,11 +139,11 @@
     },
     {
       sel: "#aiFab",
-      step: 1,
+      mod: "overview",
       title: ["5. Floating Live Assistant & Presentation", "5. Assistente Flutuante e Apresentação"],
       body: [
-        "Click <b>Ask the Cockpit</b> at the bottom-right anytime for instant offline Q&amp;A, JSON context export, or live <b>AI Analysis ON</b> chat. Ready to present? Click <b>Present (17)</b> in the top bar.",
-        "Clique em <b>Pergunte ao Cockpit</b> no canto inferior direito para Q&amp;A instantâneo offline, exportar JSON ou chat com <b>AI Analysis ON</b>. Pronto para apresentar? Clique em <b>Apresentar (17)</b> no topo."
+        "Click <b>Ask the Cockpit</b> at the bottom-right anytime for instant offline Q&amp;A, JSON context export, or live <b>AI Analysis ON</b> chat (OpenAI or Anthropic). Ready to present? Click <b>Present (17)</b> in the top bar.",
+        "Clique em <b>Pergunte ao Cockpit</b> no canto inferior direito para Q&amp;A instantâneo offline, exportar JSON ou chat com <b>AI Analysis ON</b> (OpenAI ou Anthropic). Pronto para apresentar? Clique em <b>Apresentar (17)</b> no topo."
       ]
     }
   ];
@@ -184,7 +185,8 @@
     if (tourIdx < 0 || tourIdx >= TOUR_STOPS.length) { closeTour(); return; }
     clearTourHighlight();
     const stop = TOUR_STOPS[tourIdx];
-    if (stop.step) goStep(stop.step, false);
+    if (stop.mod) goMod(stop.mod, false);
+    else if (stop.step) goStep(stop.step, false);
 
     const el = document.querySelector(stop.sel);
     if (el) {

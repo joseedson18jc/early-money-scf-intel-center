@@ -70,10 +70,12 @@ check("Zero visible 'claude-opus-5-5' text outside <option value>", !domHtml.rep
 check("AI Analysis ON badge present in header", domHtml.includes("AI Analysis ON"));
 check("3Q26 anchor financials & PTAX 5.8889 present", html.includes("5.8889") && html.includes("467.2") && html.includes("43.7"));
 
-// 4. Key new modular UX elements present
-for (const id of ["liveInsightsBar", "toggleTips", "startTour", "tourPop", "leversCard", "levers", "products", "m-of", "aiFab", "aiPanel"]) {
+// 4. Key modular UX elements present (including left sidebar & 15 modules)
+for (const id of ["sideNav", "menuToggle", "appShell", "modPager", "liveInsightsBar", "toggleTips", "startTour", "tourPop", "leversCard", "levers", "products", "m-of", "aiFab", "aiPanel"]) {
   check(`Element #${id} exists in DOM`, seen.has(id));
 }
+const modCount = [...domHtml.matchAll(/data-mod="([^"]+)"/g)].length;
+check("All 15 separated modules registered in DOM", modCount === 15, `found ${modCount}`);
 
 // 5. All data-i18n keys in DOM exist in I18N dictionary
 const i18nMatch = scripts[scripts.length - 1].match(/const I18N = (\{[\s\S]*?\n  \});/);

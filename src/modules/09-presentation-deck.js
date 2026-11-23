@@ -218,7 +218,7 @@
   [...$("deck-dots").children].forEach((d, i) => d.onclick = () => { slideIdx = i; renderSlide(); });
   function openDeck(i = 0) { setPlaying(false); lastFocus = document.activeElement; slideIdx = i; deck.hidden = false; syncBodyLock(); renderSlide(); deck.focus(); }
   function closeDeck() { clearTimers(); deck.hidden = true; syncBodyLock(); if (lastFocus) lastFocus.focus(); }
-  $("openDeck").onclick = () => openDeck(0); $("pipeDeck").onclick = () => openDeck(0); $("openDeckFooter").onclick = () => openDeck(0);
+  $("openDeck").onclick = () => openDeck(0); if ($("pipeDeck")) $("pipeDeck").onclick = () => openDeck(0); if ($("openDeckFooter")) $("openDeckFooter").onclick = () => openDeck(0);
   $("deck-close").onclick = closeDeck;
   $("deck-prev").onclick = () => { if (slideIdx > 0) { slideIdx--; renderSlide(); } };
   $("deck-next").onclick = () => { if (slideIdx < SLIDES.length - 1) { slideIdx++; renderSlide(); } };
@@ -252,6 +252,7 @@
 
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") {
+      if (document.body.classList.contains("sidebar-open") && typeof closeMobileSidebar === "function") { closeMobileSidebar(); return; }
       if ($("tourPop") && !$("tourPop").hidden && typeof closeTour === "function") { closeTour(); return; }
       if (!proofModal.hidden) { closeProof(); return; }
       for (const id of SIMPLE_MODALS) { const m = $(id); if (!m.hidden) { closeSimpleModal(m); return; } }
@@ -324,7 +325,7 @@
   function setLang(l) {
     lang = l; try { localStorage.setItem("scf-lang", l); } catch (e) {}
     document.documentElement.lang = l === "pt" ? "pt-BR" : "en";
-    document.title = T("SCF Brazil · Specialist weekly cockpit (concept)","Risco Sacado Brasil · Cockpit semanal do especialista (conceito)");
+    document.title = T("Early Money · SCF Specialist Weekly Intel Center", "Early Money · Intel Center semanal especialista de SCF");
     document.querySelectorAll("[data-i18n]").forEach(e => { const v = I18N[e.dataset.i18n]; if (v) e.textContent = L(v); });
     document.querySelectorAll("[data-i18n-html]").forEach(e => { const v = I18N[e.dataset.i18nHtml]; if (v) e.innerHTML = L(v); });
     document.querySelectorAll("[data-i18n-aria]").forEach(e => { const v = I18N[e.dataset.i18nAria]; if (v) e.setAttribute("aria-label", L(v)); });
