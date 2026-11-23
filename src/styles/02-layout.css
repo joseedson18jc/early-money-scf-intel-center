@@ -356,6 +356,24 @@
   .sidebar-backdrop[hidden]{display:none}
   .sidebar{position:sticky;top:86px;height:calc(100vh - 86px);overflow-y:auto;background:var(--surface);border-right:1px solid var(--hair);padding:14px 12px 24px;display:flex;flex-direction:column;gap:12px;transition:transform .2s ease,opacity .18s ease;scrollbar-width:thin}
   .sb-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--hair)}
+  .sb-controls{display:flex;flex-direction:column;gap:8px;padding-bottom:12px;border-bottom:1px solid var(--hair)}
+  .sb-ai-row{display:flex;gap:6px;align-items:center}
+  .sb-ai-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid rgba(5,109,174,.32);background:linear-gradient(135deg,#002B66,#056DAE);color:#fff;font:700 12px var(--body);padding:8px 10px;border-radius:10px;cursor:pointer;white-space:nowrap;box-shadow:0 3px 10px rgba(5,109,174,.22);transition:transform .15s,box-shadow .15s}
+  .sb-ai-btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(5,109,174,.32)}
+  .sb-gear-btn{position:relative;flex:0 0 36px;height:34px;border:1px solid var(--hair);background:var(--tint);color:var(--navy);border-radius:10px;display:grid;place-items:center;cursor:pointer;transition:border-color .15s,background .15s}
+  .sb-gear-btn:hover{border-color:var(--blue);color:var(--blue)}
+  .sb-gear-btn .set-dot{position:absolute;top:5px;right:5px;width:6px;height:6px;border-radius:50%;background:var(--green);display:none}
+  .sb-gear-btn.has-key .set-dot{display:block}
+  .sb-present-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;background:var(--navy);color:#fff;font:700 12px var(--body);padding:8px 12px;border-radius:10px;cursor:pointer;transition:background .15s}
+  .sb-present-btn:hover{background:var(--blue)}
+  .sb-help-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .sb-chip-btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;border:1px solid var(--hair);background:var(--surface);color:var(--navy);font:600 11.5px var(--body);padding:6px 8px;border-radius:9px;cursor:pointer;transition:border-color .15s,background .15s,color .15s}
+  .sb-chip-btn:hover{border-color:var(--blue);color:var(--blue)}
+  .sb-chip-btn[aria-pressed="true"]{background:rgba(5,109,174,.10);border-color:rgba(5,109,174,.4);color:var(--blue)}
+  .sb-switches{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .sb-seg{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--tint);padding:2px;border-radius:9px;border:1px solid var(--hair)}
+  .sb-seg button{border:0;background:transparent;color:var(--muted);font:700 11px var(--body);padding:5px 4px;border-radius:7px;cursor:pointer;transition:all .14s}
+  .sb-seg button[aria-pressed="true"]{background:var(--surface);color:var(--navy);box-shadow:0 1px 3px rgba(0,26,77,.12)}
   .sb-mode{display:grid;grid-template-columns:1fr 1fr;gap:3px;flex:1;background:var(--tint);padding:3px;border-radius:10px;border:1px solid var(--hair)}
   .sb-mode button{border:0;background:transparent;color:var(--muted);font:600 11.5px var(--body);padding:6px 8px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .15s}
   .sb-mode button[aria-pressed="true"]{background:var(--surface);color:var(--navy);box-shadow:0 1px 4px rgba(0,26,77,.12)}

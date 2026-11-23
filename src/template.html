@@ -35,29 +35,6 @@
     </div>
 
     <div class="topbar-right">
-      <button class="nav-ai" id="openAI" data-i18n-aria="nav.ai.aria" title="AI Analysis ON">
-        <span class="ai-dot" id="aiDot" aria-hidden="true"></span>
-        <span>✦</span>
-        <span class="ai-lbl" data-i18n="nav.ai">AI Analysis ON</span>
-      </button>
-      <button class="nav-ico" id="openSettings" data-i18n-aria="nav.settings" title="Configurações / Settings">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
-        <span class="set-dot" aria-hidden="true"></span>
-      </button>
-      <button class="nav-util" id="toggleTips" aria-pressed="true" data-i18n-aria="nav.tips.aria" title="Dicas na tela / On-screen tips"><span>💡</span><span class="util-lbl" data-i18n="nav.tips">Dicas</span></button>
-      <button class="nav-util" id="startTour" data-i18n-aria="nav.tour.aria" title="Guia rápido / Guided tour"><span>?</span><span class="util-lbl" data-i18n="nav.tour">Guia</span></button>
-      <button class="btn-present" id="openDeck">
-        <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5l8 4.5-8 4.5z" fill="currentColor"/></svg>
-        <span data-i18n="nav.present">Apresentar (17)</span>
-      </button>
-      <div class="pill-switch ccy-switch" role="group" aria-label="Moeda / Currency" title="PTAX BCB 19/11/2026: R$ 5,89 / US$">
-        <button data-ccy="BRL" aria-pressed="true">BRL</button>
-        <button data-ccy="USD" aria-pressed="false">USD</button>
-      </div>
-      <div class="pill-switch lang" role="group" aria-label="Idioma / Language">
-        <button data-lang="pt" aria-pressed="true">PT</button>
-        <button data-lang="en" aria-pressed="false">EN</button>
-      </div>
       <div class="pill-switch theme-switch" role="group" aria-label="Tema / Theme">
         <button data-theme="light" aria-pressed="true" title="Modo claro / Light mode" aria-label="Light">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.7M8 12.8v1.7M1.5 8h1.7M12.8 8h1.7M3.4 3.4l1.2 1.2M11.4 11.4l1.2 1.2M12.6 3.4l-1.2 1.2M4.6 11.4l-1.2 1.2"/></svg>
@@ -81,6 +58,42 @@
         <button type="button" id="modeAll" aria-pressed="false" data-i18n="vm.all">Ver todos</button>
       </div>
       <button type="button" class="sb-close-mob" id="sbCloseMob" aria-label="Fechar menu">✕</button>
+    </div>
+
+    <!-- SIDEBAR QUICK CONTROLS DOCK (AI, PRESENT, TIPS, TOUR, BRL/USD, PT/EN) -->
+    <div class="sb-controls" id="sbControls">
+      <div class="sb-ai-row">
+        <button type="button" class="sb-ai-btn" id="openAI" data-i18n-aria="nav.ai.aria" title="AI Analysis ON">
+          <span class="ai-dot" id="aiDot" aria-hidden="true"></span>
+          <span>✦</span>
+          <span class="ai-lbl" data-i18n="nav.ai">AI Analysis ON</span>
+        </button>
+        <button type="button" class="sb-gear-btn" id="openSettings" data-i18n-aria="nav.settings" title="Configurações / API Key">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+          <span class="set-dot" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <button type="button" class="sb-present-btn" id="openDeck">
+        <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5l8 4.5-8 4.5z" fill="currentColor"/></svg>
+        <span data-i18n="nav.present">Apresentar (17)</span>
+      </button>
+
+      <div class="sb-help-row">
+        <button type="button" class="sb-chip-btn" id="toggleTips" aria-pressed="true" data-i18n-aria="nav.tips.aria" title="Dicas na tela / On-screen tips"><span>💡</span><span data-i18n="nav.tips">Dicas</span></button>
+        <button type="button" class="sb-chip-btn" id="startTour" data-i18n-aria="nav.tour.aria" title="Guia rápido / Guided tour"><span>?</span><span data-i18n="nav.tour">Guia</span></button>
+      </div>
+
+      <div class="sb-switches">
+        <div class="sb-seg ccy-switch" role="group" aria-label="Moeda / Currency" title="PTAX BCB 19/11/2026: R$ 5,89 / US$">
+          <button type="button" data-ccy="BRL" aria-pressed="true">BRL</button>
+          <button type="button" data-ccy="USD" aria-pressed="false">USD</button>
+        </div>
+        <div class="sb-seg lang" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
     </div>
 
     <nav class="sb-nav" id="sbNav">

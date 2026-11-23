@@ -102,12 +102,12 @@
   // ---------- 5-Stop Interactive Walkthrough Tour ----------
   const TOUR_STOPS = [
     {
-      sel: ".topbar-right",
-      step: null,
+      sel: "#sbControls",
+      mod: "overview",
       title: ["1. Controls, Currency & AI Analysis ON", "1. Controles, Moeda e AI Analysis ON"],
       body: [
-        "Switch between <b>BRL / USD</b> (BCB PTAX 5.89), <b>PT / EN</b>, and <b>Light / Dark</b> anytime. Click <b>⚙ Settings</b> to save your persistent Anthropic key and unlock <b>AI Analysis ON</b>.",
-        "Alterne entre <b>BRL / USD</b> (PTAX BCB 5,89), <b>PT / EN</b> e <b>Claro / Escuro</b> a qualquer momento. Clique em <b>⚙ Configurações</b> para salvar sua chave Anthropic persistente e ativar o <b>AI Analysis ON</b>."
+        "All controls live cleanly in the <b>Left Menu</b>: launch <b>AI Analysis ON</b> or <b>⚙ Settings</b> (OpenAI / Anthropic), open the <b>17-slide Presentation</b>, toggle <b>Tips</b>, and switch <b>BRL / USD</b> or <b>PT / EN</b>.",
+        "Todos os controles ficam organizados no <b>Menu Lateral</b>: abra o <b>AI Analysis ON</b> ou <b>⚙ Configurações</b> (OpenAI / Anthropic), lance a <b>Apresentação (17)</b>, alterne <b>Dicas</b> e troque <b>BRL / USD</b> ou <b>PT / EN</b>."
       ]
     },
     {
@@ -211,6 +211,7 @@
   }
 
   function startTour() {
+    if (typeof closeMobileSidebar === "function") closeMobileSidebar();
     setPlaying(false);
     tourIdx = 0;
     renderTourStep();

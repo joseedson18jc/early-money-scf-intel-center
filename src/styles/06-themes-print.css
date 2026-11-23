@@ -157,6 +157,13 @@
   html[data-theme="dark"] .sb-item[aria-current="page"]{background:rgba(77,178,255,.16);color:#67CFDA;border-left-color:#67CFDA}
   html[data-theme="dark"] .sb-item[aria-current="page"] .sb-ico{background:#00A3D9;color:#061326}
   html[data-theme="dark"] .sb-badge.warn{background:rgba(251,191,36,.16);color:#FCD34D}
+  html[data-theme="dark"] .sb-gear-btn{background:#16233B;border-color:#2A3D5E;color:#E2ECFA}
+  html[data-theme="dark"] .sb-present-btn{background:#056DAE;color:#fff}
+  html[data-theme="dark"] .sb-present-btn:hover{background:#00A3D9}
+  html[data-theme="dark"] .sb-chip-btn{background:#142036;border-color:#263754;color:#DCE8F8}
+  html[data-theme="dark"] .sb-chip-btn[aria-pressed="true"]{background:rgba(77,178,255,.16);border-color:#4DB2FF;color:#67CFDA}
+  html[data-theme="dark"] .sb-seg{background:#0D1526;border-color:#243554}
+  html[data-theme="dark"] .sb-seg button[aria-pressed="true"]{background:#192944;color:#F1F5FB}
   html[data-theme="dark"] .workspace-bar{background:#111B2E;border-color:#243554}
   @media(max-width:1100px){
     .live-insights{grid-template-columns:1fr}

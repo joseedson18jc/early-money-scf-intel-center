@@ -216,7 +216,7 @@
   }
   $("deck-dots").innerHTML = SLIDES.map((_, i) => `<button aria-label="Slide ${i + 1}"></button>`).join("");
   [...$("deck-dots").children].forEach((d, i) => d.onclick = () => { slideIdx = i; renderSlide(); });
-  function openDeck(i = 0) { setPlaying(false); lastFocus = document.activeElement; slideIdx = i; deck.hidden = false; syncBodyLock(); renderSlide(); deck.focus(); }
+  function openDeck(i = 0) { if (typeof closeMobileSidebar === "function") closeMobileSidebar(); setPlaying(false); lastFocus = document.activeElement; slideIdx = i; deck.hidden = false; syncBodyLock(); renderSlide(); deck.focus(); }
   function closeDeck() { clearTimers(); deck.hidden = true; syncBodyLock(); if (lastFocus) lastFocus.focus(); }
   $("openDeck").onclick = () => openDeck(0); if ($("pipeDeck")) $("pipeDeck").onclick = () => openDeck(0); if ($("openDeckFooter")) $("openDeckFooter").onclick = () => openDeck(0);
   $("deck-close").onclick = closeDeck;
