@@ -10,7 +10,12 @@
   function renderCompetitors() {
     const visibleFunders = FUNDERS.filter(f => compFilter === "banks" ? (f.type === "bank" || f.type === "citi") : compFilter === "fidc" ? (f.type === "fidc" || f.type === "citi") : true);
     const lvlCls = v => v >= 260 ? "lvl-3" : v >= 140 ? "lvl-2" : "lvl-1";
-    const headCols = visibleFunders.map(f => `<th><div class="funder-hd"><span class="funder-dot" style="background:${f.col}">${f.abbr}</span><span>${f.name}</span></div></th>`).join("");
+    const headCols = visibleFunders.map(f => {
+      const badge = FUNDER_LOGOS[f.k]
+        ? `<span class="funder-logo-chip${f.k === "itau" ? " sq" : ""}">${FUNDER_LOGOS[f.k]}</span>`
+        : `<span class="funder-dot" style="background:${f.col}">${f.abbr}</span>`;
+      return `<th><div class="funder-hd">${badge}<span>${f.name}</span></div></th>`;
+    }).join("");
     const bodyRows = COMP_DATA.map((row, idx) => {
       const a = ANCHORS[idx], total = FUNDERS.reduce((s, f) => s + (row[f.k] || 0), 0);
       const cells = visibleFunders.map(f => {

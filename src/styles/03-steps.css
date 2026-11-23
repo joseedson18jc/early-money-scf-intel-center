@@ -236,8 +236,12 @@
   .matrix-table tbody tr:hover td,.matrix-table tbody tr:hover td:first-child{background:#F4F9FE}
   .matrix-table tbody tr.selected td,.matrix-table tbody tr.selected td:first-child{background:#EAF3FC}
   .matrix-table tfoot td,.matrix-table tfoot td:first-child{background:#F0F6FC;font-weight:700;color:var(--navy);border-bottom:0}
-  .funder-hd{display:flex;flex-direction:column;align-items:center;gap:4px}
-  .funder-dot{width:24px;height:24px;border-radius:7px;color:#fff;font-family:var(--head);font-size:9.5px;font-weight:800;display:grid;place-items:center}
+  .funder-hd{display:flex;flex-direction:column;align-items:center;gap:5px}
+  .funder-dot{width:26px;height:26px;border-radius:7px;color:#fff;font-family:var(--head);font-size:9.5px;font-weight:800;display:grid;place-items:center}
+  .funder-logo-chip{display:inline-flex;align-items:center;justify-content:center;height:28px;min-width:34px;max-width:96px;padding:3px 7px;border-radius:8px;background:#fff;border:1px solid var(--hair);box-shadow:0 1px 3px rgba(0,26,77,.07)}
+  .funder-logo-chip svg{height:16px;width:auto;max-width:82px;display:block}
+  .funder-logo-chip.sq{padding:3px 5px}
+  .funder-logo-chip.sq svg{height:20px;width:20px}
   .mcell{display:inline-block;min-width:62px;padding:4px 7px;border-radius:7px;font-weight:700;font-size:12px;color:var(--navy)}
   .mcell.empty{color:#B0BFCE;font-weight:500;background:transparent}
   .mcell.lvl-1{background:rgba(5,109,174,.10)}
