@@ -1,0 +1,15 @@
+{
+  "name": "risco-sacado-cockpit",
+  "version": "2.0.0",
+  "description": "Risco Sacado Brasil — SCF Specialist Weekly Cockpit, Live Insights, AI Analysis ON & 17-Slide Presentation Deck",
+  "private": true,
+  "type": "module",
+  "author": "José Edson Matos da Costa",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "verify": "node tests/verify.mjs"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

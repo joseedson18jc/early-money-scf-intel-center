@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script>try{var qp=new URLSearchParams(location.search).get("theme"),st=localStorage.getItem("scf-theme"),t=(qp==="dark"||qp==="light")?qp:(st==="dark"||st==="light")?st:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="light";}</script>
+<title>Risco Sacado Brasil · Cockpit semanal do especialista</title>
+<style>
+/* {{STYLES}} */
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="header-notice" role="note">
+    <span>Uso funcional comprovado porém esta versão é somente por ora, ilustrativa e pertence a J.E.M.Costa.</span>
+  </div>
+  <div class="topbar-inner">
+    <a class="brand-lockup" href="#top" id="brandHome" aria-label="Early Money · SCF Intel Center">
+      <span id="brandMark" class="brand-logo" aria-hidden="true"></span>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <span class="brand-title">
+        <strong data-i18n="nav.brand">Early Money</strong>
+        <span data-i18n="nav.sub">Corporate Banking · Brasil</span>
+      </span>
+    </a>
+
+    <nav class="nav-steps" aria-label="Etapas do cockpit" id="topStepNav">
+      <button class="nav-step-btn" data-step="1" aria-current="step"><span class="sn">1</span><span data-i18n="st.1.short">Diagnóstico</span></button>
+      <button class="nav-step-btn" data-step="2"><span class="sn">2</span><span data-i18n="st.2.short">Projeção</span></button>
+      <button class="nav-step-btn" data-step="3"><span class="sn">3</span><span data-i18n="st.3.short">Pipeline</span></button>
+      <button class="nav-step-btn" data-step="4"><span class="sn">4</span><span data-i18n="st.4.short">Mercado</span></button>
+    </nav>
+
+    <div class="topbar-right">
+      <button class="nav-ai" id="openAI" data-i18n-aria="nav.ai.aria" title="AI Analysis ON">
+        <span class="ai-dot" id="aiDot" aria-hidden="true"></span>
+        <span>✦</span>
+        <span class="ai-lbl" data-i18n="nav.ai">AI Analysis ON</span>
+      </button>
+      <button class="nav-ico" id="openSettings" data-i18n-aria="nav.settings" title="Configurações / Settings">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+        <span class="set-dot" aria-hidden="true"></span>
+      </button>
+      <button class="nav-util" id="toggleTips" aria-pressed="true" data-i18n-aria="nav.tips.aria" title="Dicas na tela / On-screen tips"><span>💡</span><span class="util-lbl" data-i18n="nav.tips">Dicas</span></button>
+      <button class="nav-util" id="startTour" data-i18n-aria="nav.tour.aria" title="Guia rápido / Guided tour"><span>?</span><span class="util-lbl" data-i18n="nav.tour">Guia</span></button>
+      <button class="nav-util" id="openOF" data-i18n-aria="nav.of.aria" title="Open Finance"><span>⇄</span><span class="util-lbl">Open Finance</span><i class="of-dot" id="of-dot" hidden></i></button>
+      <button class="nav-ghost" id="openData" data-i18n="nav.data">Dados CSV</button>
+      <button class="nav-ghost" id="openBrief" data-i18n="nav.brief">Briefing</button>
+      <button class="btn-present" id="openDeck">
+        <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5l8 4.5-8 4.5z" fill="currentColor"/></svg>
+        <span data-i18n="nav.present">Apresentar (17)</span>
+      </button>
+      <div class="pill-switch ccy-switch" role="group" aria-label="Moeda / Currency" title="PTAX BCB 19/11/2026: R$ 5,89 / US$">
+        <button data-ccy="BRL" aria-pressed="true">BRL</button>
+        <button data-ccy="USD" aria-pressed="false">USD</button>
+      </div>
+      <div class="pill-switch lang" role="group" aria-label="Idioma / Language">
+        <button data-lang="pt" aria-pressed="true">PT</button>
+        <button data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <div class="pill-switch theme-switch" role="group" aria-label="Tema / Theme">
+        <button data-theme="light" aria-pressed="true" title="Modo claro / Light mode" aria-label="Light">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.7M8 12.8v1.7M1.5 8h1.7M12.8 8h1.7M3.4 3.4l1.2 1.2M11.4 11.4l1.2 1.2M12.6 3.4l-1.2 1.2M4.6 11.4l-1.2 1.2"/></svg>
+        </button>
+        <button data-theme="dark" aria-pressed="false" title="Modo escuro / Dark mode" aria-label="Dark">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 9.8A5.8 5.8 0 0 1 6.2 2.5a5.8 5.8 0 1 0 7.3 7.3Z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="scrollProg" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <!-- HERO + FLOW ART + CONTROLS -->
+  <section class="hero">
+    <div>
+      <div class="kick-row">
+        <span class="kick" data-i18n="kick">Carteira Brasil · Revisão semanal, inputs diários</span>
+        <span class="badge" data-i18n="badge">Dados ilustrativos</span>
+        <span class="fx-badge" id="fxBadge" hidden>PTAX BCB 19/11/2026: R$ 5,89 / US$</span>
+      </div>
+      <h1 data-i18n="h1">Intel Center semanal especialista de SCF</h1>
+      <p class="sub" id="heroSub"></p>
+      <button class="srcchip" id="src-chip" type="button"><i></i><span id="src-txt"></span></button>
+    </div>
+
+    <svg class="hero-art" viewBox="0 0 400 150" role="img" aria-label="Fluxo entre fornecedor, âncora e banco">
+      <defs>
+        <linearGradient id="hg-main" x1="0" x2="1"><stop offset="0" stop-color="#00BDF2"/><stop offset="1" stop-color="#056DAE"/></linearGradient>
+        <radialGradient id="hg-glow"><stop offset="0" stop-color="#00BDF2" stop-opacity=".28"/><stop offset="1" stop-color="#00BDF2" stop-opacity="0"/></radialGradient>
+      </defs>
+      <circle cx="200" cy="75" r="58" fill="url(#hg-glow)"/>
+      <g stroke="#7DAAD4" stroke-width="1.5" fill="none">
+        <path class="flow" d="M58 28 C120 30 140 60 176 70"/><path class="flow" d="M46 75 H176"/><path class="flow" d="M58 122 C120 120 140 90 176 80"/>
+        <path class="flow" d="M224 75 H316" stroke="#056DAE"/><path class="flow" d="M330 52 C300 10 120 0 60 22" stroke="#00BDF2" stroke-width="1.8"/>
+      </g>
+      <g class="ha-node" fill="#fff" stroke="#C8D6E6"><circle cx="46" cy="28" r="14"/><circle cx="34" cy="75" r="14"/><circle cx="46" cy="122" r="14"/></g>
+      <g fill="none" stroke="#056DAE" stroke-width="1.6" stroke-linecap="round">
+        <path d="M40 33v-3a6 6 0 0 1 12 0v3"/><circle cx="46" cy="24" r="3"/>
+        <path d="M28 80v-3a6 6 0 0 1 12 0v3"/><circle cx="34" cy="71" r="3"/>
+        <path d="M40 127v-3a6 6 0 0 1 12 0v3"/><circle cx="46" cy="118" r="3"/>
+      </g>
+      <rect x="176" y="51" width="48" height="48" rx="12" fill="url(#hg-main)"/>
+      <path d="M187 90V72l8 5v-5l8 5v-9h10v22z" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/>
+      <rect class="ha-bank" x="316" y="51" width="48" height="48" rx="12" fill="#002D72"/>
+      <path d="M326 68l14-8 14 8M329 68v14M335 68v14M345 68v14M351 68v14M326 86h28" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+      <circle class="pulse" r="3.5" fill="#00BDF2"><animateMotion dur="2.6s" repeatCount="indefinite" path="M46 75 H176"/></circle>
+      <circle class="pulse" r="3.5" fill="#056DAE"><animateMotion dur="2.6s" begin=".8s" repeatCount="indefinite" path="M224 75 H316"/></circle>
+      <circle class="pulse" r="3.5" fill="#0E8A5F"><animateMotion dur="3.4s" begin="1.2s" repeatCount="indefinite" path="M330 52 C300 10 120 0 60 22"/></circle>
+      <g font-size="10.5" font-weight="600" fill="#4A5D73" text-anchor="middle" font-family="var(--body)">
+        <text x="46" y="146" data-i18n="hero.sup">Fornecedores</text><text x="200" y="116" data-i18n="hero.anc">Âncora</text><text x="340" y="116" data-i18n="hero.bank">Banco</text>
+        <text x="120" y="68" font-size="9" data-i18n="hero.inv">duplicatas</text><text x="270" y="68" font-size="9" data-i18n="hero.conf">confirmadas</text><text x="200" y="10" font-size="9" fill="#056DAE" data-i18n="hero.pay">antecipação de crédito</text>
+      </g>
+    </svg>
+
+    <div class="hero-right">
+      <aside class="quarter-pill" data-i18n-aria="aria.quarter">
+        <div><strong id="quarter-heading">Fechamento do trimestre</strong><span id="quarter-date"></span></div>
+        <div role="timer" id="quarter-clock" data-i18n-aria="aria.clock"></div>
+      </aside>
+      <div class="week-bar" role="group" data-i18n-aria="aria.weekctl">
+        <div class="week-bar-left">
+          <button class="btn-ico" id="prev" data-i18n-aria="aria.prev"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M10 3.5 5.5 8 10 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="btn-ico play" id="play" data-i18n-aria="aria.play"><svg id="playIcon" width="15" height="15" viewBox="0 0 16 16"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg></button>
+          <button class="btn-ico" id="next" data-i18n-aria="aria.next"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="wk-pill"><small data-i18n="wk.short">Sem</small><span id="wk">12</span></div>
+        </div>
+        <div class="slider-wrap">
+          <input type="range" id="slider" min="1" max="12" value="12" data-i18n-aria="wk">
+          <div class="slider-ticks"><span id="tk-start">S1</span><span class="milestone" data-i18n="wk.docai">S5 · IA Docs</span><span id="tk-end">S12</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-STEP INTUITIVE JOURNEY SELECTOR -->
+  <section class="journey-bar" aria-label="Fluxo de decisão em 4 etapas" id="journeyBar">
+    <button class="step-card" data-step="1" aria-pressed="true">
+      <div class="step-card-top"><span class="step-num"><i>1</i><span data-i18n="st.1.tag">Decisão 1</span></span><span class="step-cadence" data-i18n="ms.d1c">Semanal · operacional</span></div>
+      <strong data-i18n="st.1.title">Diagnosticar programa e adesão</strong>
+      <p data-i18n="st.1.desc">Plano de ação, KPIs auditáveis, briefing, alertas, funil com IA de documentos e propensão.</p>
+      <div class="step-owner"><span data-i18n="st.who">Quem usa:</span> <b data-i18n="st.1.who">Especialista SCF & RM</b></div>
+    </button>
+    <button class="step-card" data-step="2" aria-pressed="false">
+      <div class="step-card-top"><span class="step-num"><i>2</i><span data-i18n="st.2.tag">Decisão 2</span></span><span class="step-cadence" data-i18n="ms.d2c">Semanal · previsibilidade</span></div>
+      <strong data-i18n="st.2.title">Projetar saldo e testar limites</strong>
+      <p data-i18n="st.2.desc">O saldo projetado cabe no limite aprovado? Erro de projeção dentro de 8%?</p>
+      <div class="step-owner"><span data-i18n="st.who">Quem usa:</span> <b data-i18n="st.2.who">Especialista SCF & Risco</b></div>
+    </button>
+    <button class="step-card" data-step="3" aria-pressed="false">
+      <div class="step-card-top"><span class="step-num"><i>3</i><span data-i18n="st.3.tag">Decisão 3</span></span><span class="step-cadence" data-i18n="ms.d3c">Mensal / trimestral</span></div>
+      <strong data-i18n="st.3.title">Dimensionar pipeline de âncoras</strong>
+      <p data-i18n="st.3.desc">Priorizar 5 âncoras (receitas 3T26), editar hipóteses e estimar crédito e receita.</p>
+      <div class="step-owner"><span data-i18n="st.who">Quem usa:</span> <b data-i18n="st.3.who">Liderança Corporate / SCF</b></div>
+    </button>
+    <button class="step-card" data-step="4" aria-pressed="false">
+      <div class="step-card-top"><span class="step-num"><i>4</i><span data-i18n="st.4.tag">Mercado</span></span><span class="step-cadence" data-i18n="st.4.cad">Inteligência externa</span></div>
+      <strong data-i18n="st.4.title">Mercado, preços e sinais externos</strong>
+      <p data-i18n="st.4.desc">Matriz de concorrentes (IAS 7), benchmark CDI+x, share real (B3/CERC/Núclea) e sinais 3T26.</p>
+      <div class="step-owner"><span data-i18n="st.who">Quem usa:</span> <b data-i18n="st.4.who">Liderança & Produto</b></div>
+    </button>
+  </section>
+
+  <!-- LIVE REACTIVE INSIGHTS STRIP -->
+  <section class="live-insights" id="liveInsightsBar" aria-live="polite" aria-label="Insights ao vivo"></section>
+
+  <!-- VIEW MODE BAR -->
+  <div class="step-toolbar">
+    <div class="step-context" id="stepContext"></div>
+    <div class="view-toggle" role="group" aria-label="Modo de visualização">
+      <button id="modeStep" aria-pressed="true" data-i18n="vm.step">Passo a passo</button>
+      <button id="modeAll" aria-pressed="false" data-i18n="vm.all">Visão completa</button>
+    </div>
+  </div>
+
+  <!-- ==================== STEP 1: DIAGNOSE, ACTIONS & AUDITABLE PROOFS ==================== -->
+  <section class="step-panel" id="panel-1" data-step-panel="1">
+    <div class="step-banner">
+      <div class="step-banner-left">
+        <span class="step-pill-lg" data-i18n="sp.1">Etapa 1 de 4</span>
+        <h2 data-i18n="st.1.title">Diagnosticar programa e adesão</h2>
+      </div>
+      <span class="sub-meta" data-i18n="sec.perf.n">Clique em qualquer card para abrir a memória de cálculo e a prova</span>
+    </div>
+
+    <div class="tip-banner" data-tip="1"><span class="tip-ico">💡</span><div class="tip-txt" data-i18n-html="tip.1"></div><button class="tip-close" data-dismiss-tip aria-label="Fechar dica">✕</button></div>
+
+    <!-- Auto-Generated Monday Action Plan -->
+    <div class="subhead" style="margin-top:6px">
+      <h3 data-i18n="sec.act">Plano de ação da semana</h3>
+      <span id="act-n"></span>
+    </div>
+    <div class="card actions-card clickable-card" data-proof="actions" tabindex="0" role="button" aria-live="polite">
+      <ol class="actions-list" id="act-list"></ol>
+      <div class="actions-foot">
+        <span data-i18n="act.foot">Priorizado automaticamente por limite, erro, alertas de risco, funil e sinais externos.</span>
+        <span class="proof-cue" style="margin-top:0" data-i18n="pf.cue">Ver prova e memória de cálculo ↗</span>
+      </div>
+    </div>
+
+    <!-- 8 Clickable KPI Tiles -->
+    <div class="subhead">
+      <h3 data-i18n="sec.perf">Desempenho do programa</h3>
+      <span data-i18n="sec.perf.delta">Variação sobre a semana anterior · clique no card para auditar</span>
+    </div>
+    <div class="grid kpis" id="kpis"></div>
+
+    <!-- Weekly Briefing + Alerts -->
+    <div class="subhead">
+      <h3 data-i18n="ai.h">O que mudou nesta semana</h3>
+      <span data-i18n="ai.sub">Síntese determinística e alertas antes de escalar a campanha</span>
+    </div>
+    <div class="card briefing-card clickable-card" data-proof="briefing" tabindex="0" role="button">
+      <div class="chead" style="margin-bottom:0">
+        <span class="aibadge"><span class="dot"></span><span data-i18n="ai.badge">Resumo semanal</span></span>
+        <span class="role-chip" id="briefingWeekTag">S12</span>
+      </div>
+      <div id="comment" aria-live="polite"></div>
+      <div class="ai-live-banner" id="aiLiveBriefing" hidden></div>
+      <div class="alerts-box">
+        <div class="lbl" data-i18n="ai.alerts">Alertas recentes</div>
+        <div class="grid grid-2" id="alerts"></div>
+      </div>
+      <div class="card-proof-foot"><span class="proof-cue" data-i18n="pf.cue">Ver prova e memória de cálculo ↗</span></div>
+    </div>
+
+    <!-- Adoption 3-col -->
+    <div class="subhead">
+      <h3 data-i18n="sec.adoption">Adesão de fornecedores e alavancas</h3>
+      <span data-i18n="sec.adoption.n">Onde intervir: documentos, propensão ou participação</span>
+    </div>
+    <div class="grid grid-3">
+      <div class="card clickable-card" data-proof="wallet" tabindex="0" role="button">
+        <div class="lbl" data-i18n="ws.lbl">Participação · três níveis</div>
+        <h3 data-i18n="ws.h">Share of wallet por segmento</h3>
+        <div class="rings">
+          <div class="ring"><svg viewBox="0 0 120 120" id="r1"></svg><div class="rl" data-i18n="ws.r1">Âncora: share of wallet</div></div>
+          <div class="ring"><svg viewBox="0 0 120 120" id="r2"></svg><div class="rl" data-i18n="ws.r2">Fornecedor: share de recebíveis*</div></div>
+        </div>
+        <div class="lbl" style="margin-top:14px" data-i18n="ws.sect">Mercado: share of wallet por setor</div>
+        <div class="bars" id="sectors"></div>
+        <div class="note" style="margin-top:10px" data-i18n="ws.note"></div>
+        <div class="card-proof-foot"><span class="proof-cue" data-i18n="pf.cue">Ver prova e memória de cálculo ↗</span></div>
+      </div>
+
+      <div class="card clickable-card" data-proof="funnel" tabindex="0" role="button">
+        <div class="chead">
+          <div>
+            <div class="lbl" data-i18n="fn.lbl">Mapa de fricção no cadastro</div>
+            <h3 data-i18n="fn.h">Funil de adesão</h3>
+          </div>
+          <div class="seg-group" role="group">
+            <button id="before" aria-pressed="true" data-i18n="fn.before">Antes</button>
+            <button id="after" aria-pressed="false" data-i18n="fn.after">Com IA de documentos</button>
+          </div>
+        </div>
+        <div class="funnel" id="funnel"></div>
+        <div class="callout" id="fcall"></div>
+        <div class="fnote" data-i18n="fn.note"></div>
+        <div class="card-proof-foot"><span class="proof-cue" data-i18n="pf.cue">Ver prova e memória de cálculo ↗</span></div>
+      </div>
+
+      <div class="card clickable-card" data-proof="propensity" tabindex="0" role="button">
+        <div class="lbl" data-i18n="pr.lbl">Score de propensão</div>
+        <h3 data-i18n="pr.h">Ativação por propensão</h3>
+        <div class="note" data-i18n="pr.n"></div>
+        <svg id="dec" viewBox="0 0 420 175" role="img" data-i18n-aria="pr.h"></svg>
+        <div class="uplift">
+          <div class="ub"><span class="lbl" data-i18n="up.camp">Grupo campanha</span><span class="v" id="ucamp">0%</span><div class="track"><div class="fill" id="ucampb"></div></div></div>
+          <div class="ub"><span class="lbl" data-i18n="up.ctrl">Grupo controle</span><span class="v" id="uctrl">0%</span><div class="track"><div class="fill" id="uctrlb" style="background:#A6B9CE"></div></div></div>
+          <div class="pp"><small data-i18n="up.lift">Ganho</small><span id="upp">+0 pp</span></div>
+        </div>
+        <div class="card-proof-foot"><span class="proof-cue" data-i18n="pf.cue">Ver prova e memória de cálculo ↗</span></div>
+      </div>
+    </div>
+
+    <!-- Friction Reduction -->
+    <div class="subhead">
+      <h3 data-i18n="sec.friction">Impacto da redução de fricção</h3>
+      <span data-i18n="fr.sub">Comparativo de conversão por etapa com e sem IA de documentos</span>
+    </div>
+    <div class="card friction-card clickable-card" data-proof="friction" tabindex="0" role="button">
+      <div class="friction-stat">
+        <div class="lbl" style="color:#0E6B4B" data-i18n="fr.lbl">Perda no envio de documentos</div>
+        <strong id="friction-gain"></strong>
+        <p id="friction-detail"></p>
+      </div>
+      <div class="friction-table">
+        <table>
+          <caption data-i18n="fr.cap">Conversão de fornecedores por etapa</caption>
+          <thead><tr><th data-i18n="fr.stage">Etapa</th><th data-i18n="fn.before">Antes</th><th data-i18n="fn.after">Com IA de documentos</th><th data-i18n="fr.change">Variação</th></tr></thead>
+          <tbody id="conversion-rows"></tbody>
+        </table>
+      </div>
+      <div class="card-proof-foot"><span class="proof-cue" data-i18n="pf.cue">Ver prova e memória de cálculo ↗</span></div>
+    </div>
+
+    <!-- 5-Stage Onboarding Levers Board -->
+    <div class="subhead">
+      <h3 data-i18n="lv.h">Alavancas por etapa do funil</h3>
+      <span id="lv-sub"></span>
+    </div>
+    <div class="card" id="leversCard">
+      <div class="levers" id="levers"></div>
+      <div class="fnote" style="margin-top:10px" data-i18n="lv.note"></div>
+    </div>
+
+    <div class="step-footer-nav" data-step-nav>
+      <button class="step-nav-btn" disabled>←</button>
+      <button class="step-nav-btn primary" data-go-step="2"><span data-i18n="nav.next2">Próximo · Etapa 2: Projeção de saldo</span> →</button>
+    </div>
+  </section>
+
+  <!-- ==================== STEP 2: FORECAST & APPROVED LIMIT CHECK ==================== -->
+  <section class="step-panel" id="panel-2" data-step-panel="2" hidden>
+    <div class="step-banner">
+      <div class="step-banner-left">
+        <span class="step-pill-lg" data-i18n="sp.2">Etapa 2 de 4</span>
+        <h2 data-i18n="st.2.title">Projetar saldo e testar limites</h2>
+      </div>
+      <span class="sub-meta" data-i18n="st.2.meta">Previsibilidade de saldo, limite aprovado e backtest (meta ≤ 8%)</span>
+    </div>
+
+    <div class="tip-banner" data-tip="2"><span class="tip-ico">💡</span><div class="tip-txt" data-i18n-html="tip.2"></div><button class="tip-close" data-dismiss-tip aria-label="Fechar dica">✕</button></div>
+
+    <div class="card">
+      <div class="chead">
+        <div>
+          <div class="lbl" data-i18n="fc.lbl">Previsibilidade</div>
+          <h3 data-i18n="fc.h">Projeção do saldo do programa</h3>
+          <div class="fc-controls">
+            <div>
+              <span class="fc-ctrl-lbl" data-i18n="fc.scenario">Cenário</span>
+              <div class="seg-group" id="scenarioGroup" role="group">
+                <button data-sc="Downside" aria-pressed="false" data-i18n="sc.Downside">Pessimista</button>
+                <button data-sc="Base" aria-pressed="true" data-i18n="sc.Base">Base</button>
+                <button data-sc="Upside" aria-pressed="false" data-i18n="sc.Upside">Otimista</button>
+              </div>
+            </div>
+            <div>
+              <span class="fc-ctrl-lbl" data-i18n="fc.horizon">Horizonte</span>
+              <div class="seg-group" id="horizonGroup" role="group">
+                <button data-hz="4" aria-pressed="false" data-i18n="hz.4">4 semanas</button>
+                <button data-hz="8" aria-pressed="false" data-i18n="hz.8">8 semanas</button>
+                <button data-hz="13" aria-pressed="true" data-i18n="hz.13">13 semanas</button>
+              </div>
+            </div>
+            <label class="limit-ctl">
+              <span data-i18n="fc.limit">Limite aprovado</span>
+              <input type="number" id="limit" value="650" min="50" max="5000" step="10">
+              <span id="limUnit">R$ mi</span>
+            </label>
+          </div>
+        </div>
+        <div class="legend">
+          <span><i style="background:var(--navy)"></i><span data-i18n="lg.actual">Realizado</span></span>
+          <span><i style="background:var(--blue)"></i><span data-i18n="lg.fc">Projeção</span></span>
+          <span><i style="background:rgba(0,189,242,.35);height:9px"></i><span data-i18n="lg.band">Faixa de erro</span></span>
+          <span><i style="background:var(--red)"></i><span data-i18n="fc.limit">Limite aprovado</span></span>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="chart-tip" id="fcTip" role="status" aria-live="polite"></div>
+        <svg id="fc" viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet" role="img"></svg>
+      </div>
+
+      <p id="outlook" class="result-banner"></p>
+      <p id="limit-status" class="limitst"></p>
+
+      <details>
+        <summary data-i18n="fc.details">Premissas da projeção e valores semanais</summary>
+        <p id="assumption"></p>
+        <div style="overflow-x:auto">
+          <table class="data-table">
+            <thead><tr><th data-i18n="wk">Semana</th><th data-i18n="lg.fc">Projeção</th><th data-i18n="th.low">Mínimo</th><th data-i18n="th.high">Máximo</th></tr></thead>
+            <tbody id="forecast-rows"></tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="lbl" data-i18n="cs.lbl">Sensibilidade de fechamento</div>
+        <h3 data-i18n="cs.h">Saldo final por cenário</h3>
+        <p class="note" id="csNote"></p>
+        <div id="case-bars" style="margin-top:10px"></div>
+      </div>
+      <div class="card">
+        <div class="lbl" data-i18n="acc.lbl">Backtest semanal</div>
+        <h3 data-i18n="acc.h">Precisão da projeção de uma semana</h3>
+        <p class="note" data-i18n="acc.n"></p>
+        <div class="legend" style="margin-top:10px">
+          <span><i style="background:var(--blue)"></i><span data-i18n="lg.model">Modelo base</span></span>
+          <span><i style="background:#9FB4CA"></i><span data-i18n="lg.prior">Saldo anterior</span></span>
+        </div>
+        <svg id="accuracy" viewBox="0 0 490 135" role="img" data-i18n-aria="acc.h"></svg>
+        <p id="accuracy-note"></p>
+      </div>
+    </div>
+
+    <div class="step-footer-nav" data-step-nav>
+      <button class="step-nav-btn" data-go-step="1">← <span data-i18n="nav.prev1">Etapa 1: Diagnóstico</span></button>
+      <button class="step-nav-btn primary" data-go-step="3"><span data-i18n="nav.next3">Próximo · Etapa 3: Pipeline de âncoras</span> →</button>
+    </div>
+  </section>
+
+  <!-- ==================== STEP 3: ANCHOR PIPELINE (UPDATED TO 3T26) ==================== -->
+  <section class="step-panel" id="panel-3" data-step-panel="3" hidden>
+    <div class="step-banner">
+      <div class="step-banner-left">
+        <span class="step-pill-lg" data-i18n="sp.3">Etapa 3 de 4</span>
+        <h2 data-i18n="sec.pipe">Pipeline de âncoras · cross-sell de risco sacado</h2>
+      </div>
+      <span class="sub-meta" data-i18n="sec.pipe.n">Receitas públicas 3T26 (nov/2026) + hipóteses editáveis</span>
+    </div>
+
+    <div class="tip-banner" data-tip="3"><span class="tip-ico">💡</span><div class="tip-txt" data-i18n-html="tip.3"></div><button class="tip-close" data-dismiss-tip aria-label="Fechar dica">✕</button></div>
+
+    <div class="card">
+      <div class="chead">
+        <div style="max-width:78ch">
+          <div class="lbl" data-i18n="pp.lbl">Modelo de dimensionamento</div>
+          <h3 data-i18n="pp.h">Fluxo anual potencial de antecipação por âncora</h3>
+          <p class="note" style="margin-top:6px" data-i18n="pp.intro"></p>
+        </div>
+        <button class="btn-present" id="pipeDeck">
+          <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5l8 4.5-8 4.5z" fill="currentColor"/></svg>
+          <span data-i18n="pp.present">Apresentar caso de cross-sell</span>
+        </button>
+      </div>
+
+      <div class="formula" id="formula"></div>
+
+      <div class="pipe-presets">
+        <span data-i18n="pp.presets">Cenário rápido:</span>
+        <button class="pill-btn" data-preset="cons" data-i18n="pp.p.cons">Conservador</button>
+        <button class="pill-btn active" data-preset="base" data-i18n="pp.p.base">Base (padrão)</button>
+        <button class="pill-btn" data-preset="stretch" data-i18n="pp.p.stretch">Expansão</button>
+      </div>
+
+      <div class="pipe-wrap">
+        <table class="pipe-table">
+          <thead>
+            <tr>
+              <th data-i18n="pp.th.anchor">Âncora</th>
+              <th data-i18n="pp.th.revenue">Anual 2026 / 3T26</th>
+              <th data-i18n="pp.th.addr">% endereçável</th>
+              <th data-i18n="pp.th.elig">Compras elegíveis</th>
+              <th data-i18n="pp.th.cov">Cobertura %</th>
+              <th data-i18n="pp.th.adh">Adesão %</th>
+              <th data-i18n="pp.th.util">Utilização %</th>
+              <th data-i18n="pp.th.flow">Fluxo anual</th>
+              <th data-i18n="pp.th.bal">Saldo implícito</th>
+              <th data-i18n="pp.th.rev">Receita spread / ano</th>
+            </tr>
+          </thead>
+          <tbody id="pipe-rows"></tbody>
+          <tfoot>
+            <tr>
+              <td data-i18n="pp.total">Total do pipeline</td>
+              <td id="pt-revenue"></td><td></td><td id="pt-elig"></td><td></td><td></td><td></td>
+              <td id="pt-flow"></td><td id="pt-bal"></td><td id="pt-rev"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="pipe-globals">
+        <label><span data-i18n="pp.tenor">Prazo médio antecipado (dias)</span><input type="number" id="g-tenor" min="1" max="360" step="1"></label>
+        <label><span data-i18n="pp.spread">Spread anual %</span><input type="number" id="g-spread" min="0" max="10" step="0.1"></label>
+        <button class="pill-btn" id="pipeReset" data-i18n="pp.reset">Restaurar hipóteses</button>
+      </div>
+      <p class="caveat" data-i18n="pp.caveat"></p>
+    </div>
+
+    <div class="subhead">
+      <h3 data-i18n="pp.cards.h">Fichas rápidas por âncora (3T26)</h3>
+      <span data-i18n="pp.cards.n">Onde investigar e qual validação destrava cada conta</span>
+    </div>
+    <div class="pipe-detail" id="pipe-detail"></div>
+
+    <div class="step-footer-nav" data-step-nav>
+      <button class="step-nav-btn" data-go-step="2">← <span data-i18n="nav.prev2">Etapa 2: Projeção de saldo</span></button>
+      <button class="step-nav-btn primary" data-go-step="4"><span data-i18n="nav.next4">Próximo · Etapa 4: Mercado</span> →</button>
+    </div>
+  </section>
+
+  <!-- ==================== STEP 4: MARKET & COMPETITION (4 INTERACTIVE MODULES) ==================== -->
+  <section class="step-panel" id="panel-4" data-step-panel="4" hidden>
+    <div class="step-banner">
+      <div class="step-banner-left">
+        <span class="step-pill-lg" data-i18n="sp.4">Etapa 4 de 4</span>
+        <h2 data-i18n="sec.mkt">Mercado e concorrência</h2>
+      </div>
+      <span class="sub-meta" data-i18n="sec.mkt.n">Inteligência externa · protótipo funcional ilustrativo pronto para integração</span>
+    </div>
+
+    <div class="card maturity-card">
+      <div class="maturity-top">
+        <div>
+          <div class="lbl" data-i18n="mk.mat.lbl">Composição atual de dados no cockpit</div>
+          <h3 data-i18n="mk.mat.h">Arquitetura dos 4 módulos externos (Fase 2)</h3>
+        </div>
+        <span class="proto-pill amber" data-i18n="mk.proto">Feeds ilustrativos · pronto p/ APIs</span>
+      </div>
+      <div class="maturity-bar" role="img" aria-label="80% interno, 15% pipeline, 5% mercado">
+        <div class="m-seg-1"></div><div class="m-seg-2"></div><div class="m-seg-3"></div>
+      </div>
+      <div class="maturity-legend">
+        <span><i style="background:var(--bar-citi)"></i><strong data-i18n="mk.m1">80% dados internos do programa</strong></span>
+        <span><i style="background:var(--bar-peers)"></i><strong data-i18n="mk.m2">15% pipeline interno & 3T26 público</strong></span>
+        <span><i style="background:var(--bar-fidc)"></i><strong data-i18n="mk.m3">5% mercado (modelado abaixo p/ conectar)</strong></span>
+      </div>
+      <p class="note" style="margin-top:8px" data-i18n="mk.note"></p>
+    </div>
+
+    <div class="tip-banner" data-tip="4"><span class="tip-ico">💡</span><div class="tip-txt" data-i18n-html="tip.4"></div><button class="tip-close" data-dismiss-tip aria-label="Fechar dica">✕</button></div>
+
+    <div class="mkt-subnav" role="group" aria-label="Módulos de mercado" id="mktSubnav">
+      <button data-mmod="all" aria-pressed="true"><span data-i18n="mk.tab.all">Todos os 4 módulos</span></button>
+      <button data-mmod="1" aria-pressed="false"><span class="mnum">4.1</span><span data-i18n="mk.1h">Concorrentes por âncora</span></button>
+      <button data-mmod="2" aria-pressed="false"><span class="mnum">4.2</span><span data-i18n="mk.2h">Preço comparado</span></button>
+      <button data-mmod="3" aria-pressed="false"><span class="mnum">4.3</span><span data-i18n="mk.3h">Share real</span></button>
+      <button data-mmod="4" aria-pressed="false"><span class="mnum">4.4</span><span data-i18n="mk.4h">Sinais externos</span></button>
+    </div>
+
+    <!-- 4.1 Concorrentes -->
+    <article class="card mkt-mod" data-mkt-panel="1">
+      <div class="mkt-mod-head">
+        <div>
+          <div class="lbl" data-i18n="mk.1tag">4.1 · Matriz competitiva</div>
+          <h3 data-i18n="mk.1h">Concorrentes por âncora</h3>
+          <p class="mkt-q" data-i18n="mk.1q">Quais bancos e FIDCs já operam o risco sacado de cada âncora?</p>
+        </div>
+        <div class="seg-group" id="compFilter" role="group">
+          <button data-cf="all" aria-pressed="true" data-i18n="mk.cf.all">Todos</button>
+          <button data-cf="banks" aria-pressed="false" data-i18n="mk.cf.banks">Bancos</button>
+          <button data-cf="fidc" aria-pressed="false" data-i18n="mk.cf.fidc">FIDCs (CVM)</button>
+        </div>
+      </div>
+      <div class="matrix-wrap"><table class="matrix-table" id="compMatrix"></table></div>
+      <div class="ias-drawer" id="iasDrawer" aria-live="polite"></div>
+      <div class="mkt-source-bar">
+        <div><b data-i18n="mk.src">Fonte de dado</b>: <span data-i18n="mk.1s"></span> · <b data-i18n="mk.out">Entrega</b>: <span data-i18n="mk.1o"></span></div>
+        <div class="infra-logos" id="infra-1" style="margin-top:0"></div>
+      </div>
+    </article>
+
+    <!-- 4.2 Preço comparado -->
+    <article class="card mkt-mod" data-mkt-panel="2">
+      <div class="mkt-mod-head">
+        <div>
+          <div class="lbl" data-i18n="mk.2tag">4.2 · Benchmark de taxa (CDI + x)</div>
+          <h3 data-i18n="mk.2h">Preço comparado</h3>
+          <p class="mkt-q" data-i18n="mk.2q">A taxa do Citi é competitiva contra o mercado (CDI + x)?</p>
+        </div>
+        <div class="seg-group" id="ratingFilter" role="group">
+          <button data-rt="all" aria-pressed="true" data-i18n="mk.rt.all">Todos os ratings</button>
+          <button data-rt="AAA" aria-pressed="false">brAAA</button>
+          <button data-rt="AA+" aria-pressed="false">brAA+</button>
+          <button data-rt="AA" aria-pressed="false">brAA</button>
+          <button data-rt="AA-" aria-pressed="false">brAA−</button>
+        </div>
+      </div>
+      <div class="spread-bar-ctl">
+        <label><span data-i18n="mk.2.sim">Testar taxa proposta (CDI +):</span><input type="range" id="mktSpreadSlider" min="0.60" max="2.60" step="0.05" value="1.20"></label>
+        <span class="spread-val-pill" id="mktSpreadVal">CDI + 1,20%</span>
+        <div class="legend" style="margin-left:auto">
+          <span><i style="background:#7CA9D4;height:8px"></i><span data-i18n="mk.2.lg.band">Faixa mercado (BCB + bancos)</span></span>
+          <span><i style="background:var(--amber);width:10px;height:10px;border-radius:2px"></i><span data-i18n="mk.2.lg.fidc">FIDC sênior (CVM)</span></span>
+          <span><i style="background:var(--blue);width:10px;height:10px;transform:rotate(45deg)"></i><span data-i18n="mk.2.lg.citi">Proposta Citi</span></span>
+        </div>
+      </div>
+      <div class="price-grid">
+        <div class="rating-band-list" id="ratingBands"></div>
+        <div class="loss-card">
+          <div class="lbl" data-i18n="mk.2.rm.lbl">Feedback dos RMs · negócios perdidos</div>
+          <h4 style="margin-top:4px;font-size:15px" data-i18n="mk.2.rm.h">Por que perdemos disputas recentes</h4>
+          <p class="note" data-i18n="mk.2.rm.sub"></p>
+          <div id="rmLossBars" style="margin-top:12px"></div>
+          <div class="callout" style="margin-top:12px" id="rmLossNote"></div>
+        </div>
+      </div>
+      <div class="mkt-source-bar">
+        <div><b data-i18n="mk.src">Fonte de dado</b>: <span data-i18n="mk.2s"></span> · <b data-i18n="mk.out">Entrega</b>: <span data-i18n="mk.2o"></span></div>
+        <div class="infra-logos" id="infra-2" style="margin-top:0"></div>
+      </div>
+    </article>
+
+    <!-- 4.3 Share real -->
+    <article class="card mkt-mod" data-mkt-panel="3">
+      <div class="mkt-mod-head">
+        <div>
+          <div class="lbl" data-i18n="mk.3tag">4.3 · Reconciliação por registradora</div>
+          <h3 data-i18n="mk.3h">Share real</h3>
+          <p class="mkt-q" data-i18n="mk.3q">Que parte do contas a pagar elegível de cada âncora o Citi já cobre frente aos pares?</p>
+        </div>
+        <span class="proto-pill" data-i18n="mk.3.sync">Sincronizado com compras elegíveis da Etapa 3</span>
+      </div>
+      <div class="share-grid">
+        <div class="donut-panel">
+          <div class="lbl" data-i18n="mk.3.ring.lbl">Share consolidado (5 âncoras)</div>
+          <svg viewBox="0 0 180 180" id="realShareRing" role="img" aria-label="Share real consolidado"></svg>
+          <div class="donut-kpis" id="realShareKpis"></div>
+          <p class="fnote" style="text-align:left;margin-top:10px" data-i18n="mk.3.ring.note"></p>
+        </div>
+        <div>
+          <div class="legend" style="margin-bottom:10px">
+            <span><i style="background:var(--bar-citi);height:9px"></i><span data-i18n="mk.3.lg.citi">Citi (coberto)</span></span>
+            <span><i style="background:var(--bar-peers);height:9px"></i><span data-i18n="mk.3.lg.peers">Bancos pares</span></span>
+            <span><i style="background:var(--bar-fidc);height:9px"></i><span data-i18n="mk.3.lg.fidc">FIDCs</span></span>
+            <span><i style="background:var(--bar-free);height:9px"></i><span data-i18n="mk.3.lg.free">Não financiado (espaço livre)</span></span>
+          </div>
+          <div class="share-rows" id="realShareRows"></div>
+        </div>
+      </div>
+      <div class="mkt-source-bar">
+        <div><b data-i18n="mk.src">Fonte de dado</b>: <span data-i18n="mk.3s"></span> · <b data-i18n="mk.out">Entrega</b>: <span data-i18n="mk.3o"></span></div>
+        <div class="infra-logos" id="infra-3" style="margin-top:0"></div>
+      </div>
+    </article>
+
+    <!-- 4.4 Sinais externos -->
+    <article class="card mkt-mod" data-mkt-panel="4">
+      <div class="mkt-mod-head">
+        <div>
+          <div class="lbl" data-i18n="mk.4tag">4.4 · Monitor de crédito e infraestrutura</div>
+          <h3 data-i18n="mk.4h">Sinais externos</h3>
+          <p class="mkt-q" data-i18n="mk.4q">O crédito da âncora e a infraestrutura de mercado estão a favor ou contra?</p>
+        </div>
+        <div class="seg-group" id="sigFilter" role="group">
+          <button data-sf="all" aria-pressed="true" data-i18n="mk.sf.all">Todos os sinais</button>
+          <button data-sf="step1" aria-pressed="false" data-i18n="mk.sf.s1">Alimenta Etapa 1 · Risco</button>
+          <button data-sf="step3" aria-pressed="false" data-i18n="mk.sf.s3">Alimenta Etapa 3 · Crédito</button>
+        </div>
+      </div>
+      <div class="sig-health-grid" id="sigHealthGrid"></div>
+      <div class="lbl" style="margin-top:4px" data-i18n="mk.4.feed.lbl">Alertas acionáveis roteados para o cockpit</div>
+      <div class="sig-feed" id="sigFeed"></div>
+      <div class="mkt-source-bar">
+        <div><b data-i18n="mk.src">Fonte de dado</b>: <span data-i18n="mk.4s"></span> · <b data-i18n="mk.out">Entrega</b>: <span data-i18n="mk.4o"></span></div>
+        <div class="infra-logos" id="infra-4" style="margin-top:0"></div>
+      </div>
+    </article>
+
+    <!-- Citi Public Product Reference -->
+    <div id="products" style="margin-top:18px"></div>
+
+    <div class="step-footer-nav" data-step-nav>
+      <button class="step-nav-btn" data-go-step="3">← <span data-i18n="nav.prev3">Etapa 3: Pipeline de âncoras</span></button>
+      <button class="step-nav-btn primary" id="openDeckFooter">
+        <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5l8 4.5-8 4.5z" fill="currentColor"/></svg>
+        <span data-i18n="nav.present.end">Abrir apresentação executiva (17 slides)</span>
+      </button>
+    </div>
+  </section>
+
+  <footer>
+    <div data-i18n-html="ft.guard"></div>
+    <div data-i18n-html="ft.by"></div>
+  </footer>
+</main>
+
+<!-- ==================== CSV DATA LOADER MODAL ==================== -->
+<div class="modal-backdrop" id="m-data" hidden role="dialog" aria-modal="true" aria-labelledby="md-title" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-head">
+      <div><div class="lbl" data-i18n="md.lbl">Camada de dados local · 100% no navegador</div><h3 id="md-title" data-i18n="md.h">Carregue os dados do programa</h3></div>
+      <button class="modal-close" data-close aria-label="Fechar / Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:13px;color:var(--muted)" data-i18n="md.p"></p>
+      <div class="csv-opts">
+        <label><span data-i18n="md.spend">Compras no escopo (R$ bi)</span><input type="number" id="cfg-spend" value="6.0" min="0.1" max="500" step="0.1"></label>
+        <label><span data-i18n="md.base">Base de fornecedores</span><input type="number" id="cfg-base" value="300" min="10" max="50000" step="10"></label>
+      </div>
+      <div class="mbtns">
+        <button class="mbtn" id="d-tpl" data-i18n="md.tpl">Baixar modelo CSV</button>
+        <label class="mbtn pri" for="d-file" data-i18n="md.load">Carregar CSV</label>
+        <input type="file" id="d-file" accept=".csv,text/csv" hidden>
+        <button class="mbtn" id="d-reset" data-i18n="md.reset">Voltar aos dados de demonstração</button>
+      </div>
+      <p id="data-msg" role="status"></p>
+      <div class="proof-table-wrap">
+        <table class="proof-table">
+          <thead><tr><th data-i18n="md.col">Coluna</th><th data-i18n="md.mean">Significado</th></tr></thead>
+          <tbody id="d-fields"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PRINTABLE / COPYABLE MONDAY BRIEFING MODAL ==================== -->
+<div class="modal-backdrop" id="m-brief" hidden role="dialog" aria-modal="true" aria-labelledby="mb-title" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-head">
+      <div><div class="lbl" data-i18n="mb.lbl">Resumo executivo de segunda-feira</div><h3 id="mb-title" data-i18n="mb.h">Briefing semanal</h3></div>
+      <button class="modal-close" data-close aria-label="Fechar / Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:13px;color:var(--muted)" data-i18n="mb.p"></p>
+      <div class="mbtns">
+        <button class="mbtn pri" id="b-print" data-i18n="mb.print">Imprimir / salvar em PDF</button>
+        <button class="mbtn" id="b-copy" data-i18n="mb.copy">Copiar como texto</button>
+        <span id="b-msg" style="font-size:12.5px;font-weight:600;color:var(--green)"></span>
+      </div>
+      <div class="brief-prev" id="brief-body"></div>
+    </div>
+  </div>
+</div>
+<div id="brief-print"></div>
+
+<!-- ==================== SETTINGS MODAL (PERSISTENT OPENAI / ANTHROPIC KEY & AI ANALYSIS ON) ==================== -->
+<div class="modal-backdrop" id="m-settings" hidden role="dialog" aria-modal="true" aria-labelledby="ms-title" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-head">
+      <div><div class="lbl" data-i18n="st.set.lbl">Configurações do cockpit · Inteligência Artificial</div><h3 id="ms-title" data-i18n="st.set.h">Chave OpenAI / Anthropic &amp; AI Analysis ON</h3></div>
+      <button class="modal-close" data-close aria-label="Fechar / Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="set-grid">
+        <div class="set-field">
+          <label for="ai-provider" data-i18n="st.set.provider">Provedor de IA</label>
+          <select id="ai-provider">
+            <option value="auto" data-i18n="st.set.provAuto">Auto-detectar pela chave (OpenAI ou Anthropic)</option>
+            <option value="openai" data-i18n="st.set.provOpenAI">OpenAI / Compatível (sk-, sk-proj-, sk-svcacct-, proxies)</option>
+            <option value="anthropic" data-i18n="st.set.provAnthropic">Anthropic (sk-ant-...)</option>
+          </select>
+        </div>
+        <div class="set-field">
+          <label for="ai-key" data-i18n="st.set.key">API Key — OpenAI ou Anthropic (persistente neste navegador)</label>
+          <div class="key-row">
+            <input type="password" id="ai-key" autocomplete="off" spellcheck="false" placeholder="sk-proj-... / sk-... (OpenAI) ou sk-ant-... (Anthropic)">
+            <button type="button" class="mbtn" id="ai-key-toggle" data-i18n="st.set.show">Mostrar</button>
+          </div>
+        </div>
+        <div class="set-row-2">
+          <div class="set-field">
+            <label for="ai-model" data-i18n="st.set.model">Perfil de IA</label>
+            <select id="ai-model">
+              <option value="auto">AI Analysis ON (Auto)</option>
+              <option value="gpt-5.4">OpenAI · GPT-5.4</option>
+              <option value="gpt-5">OpenAI · GPT-5</option>
+              <option value="gpt-4.1">OpenAI · GPT-4.1</option>
+              <option value="gpt-4o">OpenAI · GPT-4o</option>
+              <option value="gpt-4o-mini">OpenAI · GPT-4o mini</option>
+              <option value="o4-mini">OpenAI · o4-mini</option>
+              <option value="claude-opus-5-5">Anthropic · AI Analysis ON (Padrão)</option>
+              <option value="claude-sonnet-4-6">Anthropic · AI Analysis ON (Rápido)</option>
+              <option value="custom" data-i18n="st.set.customOpt">Outro ID personalizado...</option>
+            </select>
+          </div>
+          <div class="set-field">
+            <label for="ai-model-custom" data-i18n="st.set.customLbl">ID de modelo personalizado (opcional)</label>
+            <input type="text" id="ai-model-custom" placeholder="gpt-4.1 / gpt-5 / ..." spellcheck="false">
+          </div>
+        </div>
+        <div class="set-field">
+          <label for="ai-endpoint" data-i18n="st.set.ep">Endpoint da API (vazio = oficial OpenAI/Anthropic ou proxy CORS)</label>
+          <input type="url" id="ai-endpoint" value="" placeholder="Auto (api.openai.com ou api.anthropic.com)" spellcheck="false">
+        </div>
+        <label class="set-check">
+          <input type="checkbox" id="ai-autoapply">
+          <span>
+            <strong data-i18n="st.set.autoH">Aplicar atualizações automaticamente (Cockpit + Apresentação)</strong>
+            <span data-i18n="st.set.autoP">Quando desmarcado (recomendado), você revisa o diff Antes → Depois e atualiza cockpit e apresentação com um clique.</span>
+          </span>
+        </label>
+        <div class="mbtns">
+          <button type="button" class="mbtn pri" id="ai-save" data-i18n="st.set.save">Salvar configurações</button>
+          <button type="button" class="mbtn" id="ai-test" data-i18n="st.set.test">Testar conexão</button>
+          <button type="button" class="mbtn" id="ai-open-copilot" data-i18n="st.set.openAi">Abrir AI Analysis ON ✦</button>
+          <button type="button" class="mbtn danger" id="ai-clear" data-i18n="st.set.clear">Remover chave</button>
+        </div>
+        <p id="set-status" class="ai-status" role="status"></p>
+        <div class="set-note" data-i18n="st.set.note"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== AI ANALYSIS ON COPILOT MODAL ==================== -->
+<div class="modal-backdrop" id="m-ai" hidden role="dialog" aria-modal="true" aria-labelledby="mai-title" tabindex="-1">
+  <div class="modal-dialog wide">
+    <div class="modal-head">
+      <div><div class="lbl" data-i18n="ai.mod.lbl">Inteligência cruzada · Etapas 1 a 4 + Apresentação (17)</div><h3 id="mai-title" data-i18n="ai.mod.h">AI Analysis ON · Predições, Insights &amp; Otimizador de Parâmetros</h3></div>
+      <button class="modal-close" data-close aria-label="Fechar / Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="ai-bar">
+        <div class="ai-bar-left">
+          <span class="ai-model-tag" id="aiModelTag">AI Analysis ON</span>
+          <span id="aiKeyState" style="font-weight:600;color:var(--muted)"></span>
+        </div>
+        <div class="mbtns">
+          <button type="button" class="mbtn" id="aiUndoBtn" hidden data-i18n="ai.mod.undo">↩ Desfazer última atualização IA</button>
+          <button type="button" class="mbtn" id="aiGoSettings" data-i18n="ai.mod.cfg">⚙ Configurar chave</button>
+        </div>
+      </div>
+
+      <div class="ai-modes" id="aiModes" role="group" aria-label="AI Analysis ON">
+        <button type="button" class="ai-mode-btn" data-aimode="cross" aria-pressed="true">
+          <strong data-i18n="ai.m1.h">Cruzar dados &amp; insights</strong>
+          <span data-i18n="ai.m1.p">Cruza Etapas 1–4, 3T26, IAS 7 e sinais externos.</span>
+        </button>
+        <button type="button" class="ai-mode-btn" data-aimode="predict" aria-pressed="false">
+          <strong data-i18n="ai.m2.h">Predições &amp; estresse</strong>
+          <span data-i18n="ai.m2.p">Revisa erro de projeção, sazonalidade e limite aprovado.</span>
+        </button>
+        <button type="button" class="ai-mode-btn" data-aimode="optimize" aria-pressed="false">
+          <strong data-i18n="ai.m3.h">Otimizar parâmetros</strong>
+          <span data-i18n="ai.m3.p">Propõe ajustes em prazo, spread, limite, 5 âncoras e apresentação.</span>
+        </button>
+        <button type="button" class="ai-mode-btn" data-aimode="exec" aria-pressed="false">
+          <strong data-i18n="ai.m4.h">Feedback executivo</strong>
+          <span data-i18n="ai.m4.p">Síntese crítica e plano de ação para segunda-feira.</span>
+        </button>
+      </div>
+
+      <div class="set-field">
+        <label for="ai-prompt" data-i18n="ai.mod.promptLbl">Direcionamento adicional para AI Analysis ON (opcional)</label>
+        <textarea class="ai-prompt" id="ai-prompt" rows="2"></textarea>
+      </div>
+
+      <div class="mbtns">
+        <button type="button" class="mbtn pri" id="aiRunBtn" data-i18n="ai.mod.run">✦ Executar AI Analysis ON</button>
+        <button type="button" class="mbtn danger" id="aiAbortBtn" hidden data-i18n="ai.mod.abort">Cancelar</button>
+        <span id="aiRunStatus" class="ai-status" role="status"></span>
+      </div>
+
+      <div id="aiResults" class="ai-out"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== STEP 1 PROOF & EVIDENCE MODAL ==================== -->
+<div class="modal-backdrop" id="proofModal" hidden role="dialog" aria-modal="true" aria-labelledby="proofTitle" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-head">
+      <div><div class="lbl" id="proofEyebrow">Prova · Etapa 1</div><h3 id="proofTitle"></h3></div>
+      <button class="modal-close" id="proofClose" aria-label="Fechar / Close">✕</button>
+    </div>
+    <div class="modal-body" id="proofBody"></div>
+    <div class="modal-foot"><span id="proofSource"></span><div id="proofAction"></div></div>
+  </div>
+</div>
+
+<!-- ==================== OPEN FINANCE INTEGRATION DEMO MODAL ==================== -->
+<div class="modal-backdrop" id="m-of" hidden role="dialog" aria-modal="true" aria-labelledby="mo-title" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-head">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span class="of-logo" id="ofBrandMark"></span>
+        <div>
+          <div class="lbl" data-i18n="of.badge">Demonstração local</div>
+          <h3 id="mo-title" data-i18n="of.h">Integração Open Finance</h3>
+        </div>
+      </div>
+      <button class="modal-close" data-close aria-label="Fechar / Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:13px;color:var(--muted)" data-i18n="of.p"></p>
+      <div class="of-k" data-i18n="of.k1">O que a integração alimenta neste cockpit</div>
+      <div class="of-grid" id="of-grid"></div>
+      <div class="of-k" data-i18n="of.k2">Como o consentimento funciona</div>
+      <ol class="of-steps" id="of-steps"></ol>
+      <div class="of-status" id="of-status" role="status"></div>
+      <div class="mbtns" style="margin-top:12px">
+        <button class="mbtn pri" id="of-toggle" type="button"></button>
+        <button class="mbtn" data-close data-i18n="of.close">Fechar</button>
+      </div>
+      <p style="font-size:11.5px;color:var(--muted);margin-top:10px" data-i18n="of.note"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FLOATING LIVE ASSISTANT DRAWER ==================== -->
+<button id="aiFab" type="button">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
+  <span id="aiFabTxt">Pergunte ao Cockpit</span>
+</button>
+<aside id="aiPanel" hidden aria-labelledby="aiTitle">
+  <div class="aihead">
+    <span class="aiico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>
+    <div><b id="aiTitle">Assistente do cockpit</b><span class="aimode" id="aiMode"></span></div>
+    <button type="button" id="aiSetBtn" class="aibtn" title="Contexto JSON / Chave"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+    <button type="button" id="aiClose" class="aibtn" aria-label="Fechar / Close">×</button>
+  </div>
+  <div id="aiSet" hidden>
+    <p id="aiSetTxt"></p>
+    <div class="airow">
+      <button type="button" class="mbtn pri" id="aiDrawerOpenSet"></button>
+      <button type="button" class="mbtn" id="aiDrawerOpenOpt"></button>
+    </div>
+    <p id="aiCtxLbl"></p>
+    <div class="airow">
+      <button type="button" class="mbtn" id="aiCopy"></button>
+      <button type="button" class="mbtn" id="aiDown"></button>
+      <span id="aiCtxMsg" role="status" style="font-weight:600;color:var(--green)"></span>
+    </div>
+  </div>
+  <div id="aiMsgs" role="log" aria-live="polite"></div>
+  <div id="aiChips"></div>
+  <form id="aiForm">
+    <input type="text" id="aiQ" autocomplete="off" maxlength="400">
+    <button type="submit" id="aiSend"></button>
+  </form>
+</aside>
+
+<!-- ==================== INTERACTIVE 5-STOP WALKTHROUGH ==================== -->
+<div class="tour-backdrop" id="tourBackdrop" hidden></div>
+<div id="tourPop" hidden role="dialog" aria-modal="false" aria-labelledby="tourTitle">
+  <div class="tour-head">
+    <span class="tour-step" id="tourStep"></span>
+    <button type="button" class="tip-close" id="tourClose" aria-label="Fechar guia">✕</button>
+  </div>
+  <h4 class="tour-title" id="tourTitle"></h4>
+  <p class="tour-body" id="tourBody"></p>
+  <div class="tour-foot">
+    <div class="tour-dots" id="tourDots"></div>
+    <div class="tour-btns">
+      <button type="button" id="tourPrev"></button>
+      <button type="button" class="pri" id="tourNext"></button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== EXECUTIVE PRESENTATION DECK ==================== -->
+<div id="deck" role="dialog" aria-modal="true" aria-labelledby="deck-title" hidden tabindex="-1">
+  <div class="deck-bar">
+    <div class="deck-brand">
+      <span id="deckBrandMark" class="brand-logo" aria-hidden="true"></span>
+      <strong id="deck-title" data-i18n="dk.title">Cross-sell de risco sacado · Brasil</strong>
+    </div>
+    <div class="dots" id="deck-dots"></div>
+    <div class="sp">
+      <span id="deck-count" aria-live="polite"></span>
+      <button class="deck-btn" id="deck-prev" data-i18n="dk.prev">← Anterior</button>
+      <button class="deck-btn" id="deck-next" data-i18n="dk.next">Próximo →</button>
+      <div class="pill-switch ccy-switch" role="group" aria-label="Moeda / Currency" title="PTAX BCB 19/11/2026: R$ 5,89 / US$">
+        <button data-ccy="BRL" aria-pressed="true">BRL</button>
+        <button data-ccy="USD" aria-pressed="false">USD</button>
+      </div>
+      <div class="pill-switch lang" role="group" aria-label="Idioma / Language">
+        <button data-lang="pt" aria-pressed="true">PT</button>
+        <button data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <div class="pill-switch theme-switch" role="group" aria-label="Tema / Theme">
+        <button data-theme="light" aria-pressed="true" title="Modo claro / Light mode" aria-label="Light">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.7M8 12.8v1.7M1.5 8h1.7M12.8 8h1.7M3.4 3.4l1.2 1.2M11.4 11.4l1.2 1.2M12.6 3.4l-1.2 1.2M4.6 11.4l-1.2 1.2"/></svg>
+        </button>
+        <button data-theme="dark" aria-pressed="false" title="Modo escuro / Dark mode" aria-label="Dark">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 9.8A5.8 5.8 0 0 1 6.2 2.5a5.8 5.8 0 1 0 7.3 7.3Z"/></svg>
+        </button>
+      </div>
+      <button class="deck-btn" id="deck-close" data-i18n="dk.close">Fechar ✕</button>
+    </div>
+  </div>
+  <div class="deck-progress"><div id="deck-prog"></div></div>
+  <div class="stage" id="deckStage"><article class="slide" id="slide"></article></div>
+</div>
+
+<script>
+/* {{SCRIPT}} */
+</script>
+</body>
+</html>
